@@ -23,6 +23,9 @@ import {
 import React, { useRef, useState, useEffect } from "react";
 import logoLez from "./logo-lez.png";
 import fotoLia from "./foto-lia.jpeg";
+import agronegocio from "./agronegocio.jpeg";
+import devimob from "./desenvolvimento imobiliario.jpeg";
+import hotelaria from "./hotelaria.jpeg";
 import ChatWidget, { ChatSection } from "./ChatWidget";
 import { 
   BarChart, 
@@ -685,7 +688,7 @@ export default function App() {
           {/* RIGHT — square image, reduced size; anchors the row height */}
           <div className="flex-shrink-0 w-[38%]" style={{ aspectRatio: '1/1' }}>
             <TechImage
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2070"
+              src={devimob}
               alt="Luxury Real Estate"
               className="w-full h-full shadow-2xl"
             />
@@ -705,7 +708,7 @@ export default function App() {
             {/* LEFT (visual) — square image anchors row height */}
             <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
               <TechImage
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070"
+                src={hotelaria}
                 alt="Luxury Hospitality"
                 className="w-full h-full shadow-2xl"
               />
@@ -721,9 +724,9 @@ export default function App() {
                   <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
                 </div>
                 <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
-                  H O T E L A R I A ,<br />
-                  E C O T U R I S M O<br />
-                  E X P E R I Ê N C I A S
+                  HOTELARIA ,<br />
+                  ECOTURISMO,<br />
+                  EXPERIÊNCIAS
                 </h2>
               </div>
 
@@ -732,12 +735,12 @@ export default function App() {
                 <p className="font-bold text-white mb-2 leading-snug">
                   Investimento e principal base de crescimento da holding.
                 </p>
-                <p className="leading-[1.7] mb-3">
-                  A hotelaria será o segundo grande movimento estratégico do grupo, utilizando imóveis próprios ou adquiridos pela holding para criar operações com geração de caixa recorrente, valorização patrimonial e fortalecimento da marca.
-                </p>
-                <p className="leading-[1.7]">
-                  A estratégia é selecionar localizações com alto potencial turístico, natureza preservada e procura crescente por experiências exclusivas, transformando esses ativos em empreendimentos de hospitalidade com posicionamento premium.
-                </p>
+<p className="leading-[1.7] mb-3 text-justify">
+  A hotelaria será o segundo grande movimento estratégico do grupo, utilizando imóveis próprios ou adquiridos pela holding para criar operações com geração de caixa recorrente, valorização patrimonial e fortalecimento da marca.
+</p>
+<p className="leading-[1.7] text-justify">
+  A estratégia é selecionar localizações com alto potencial turístico, natureza preservada e procura crescente por experiências exclusivas, transformando esses ativos em empreendimentos de hospitalidade com posicionamento premium.
+</p>
               </div>
 
               {/* BOTTOM — Estratégia + Possibilidades, base flush with image bottom */}
@@ -780,10 +783,10 @@ export default function App() {
                 <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
               </div>
               <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
-                T E C N O L O G I A ,<br />
-                N E G Ó C I O S<br />
-                D I G I T A I S,<br />
-               I N O V A Ç Ã O
+                TECNOLOGIA ,<br />
+                NEGÓCIOS DIGITAIS,<br />
+                INOVAÇÃO <br />
+               
               </h2>
             </div>
 
@@ -859,9 +862,9 @@ export default function App() {
                   <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
                 </div>
                 <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
-                  M O D A ,<br />
-                  M A R C A,<br />
-                  L I F E S T Y L E
+                  M O D A,    M A R C A,<br />
+                 L I F E S T Y L E <br />
+                  
                 </h2>
               </div>
 
@@ -910,11 +913,14 @@ export default function App() {
                 <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
                 <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
               </div>
-              <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
-                A G R O N E G Ó C I O<br />
-                E  A T I V O S<br />
-                R E A I S
-              </h2>
+<h2 
+  className="font-serif font-bold tracking-tighter uppercase leading-[1.05] " 
+  style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}
+>
+  A G R O N E G Ó C I O <br />
+
+  A T I V O S &nbsp;&nbsp; R U R A I S
+</h2>
             </div>
 
             {/* MIDDLE — mt-auto pulls this block toward the base */}
@@ -946,13 +952,13 @@ export default function App() {
           </div>
 
           {/* RIGHT — square image anchors row height */}
-          <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
-            <TechImage
-              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2070"
-              alt="Agribusiness"
-              className="w-full h-full shadow-2xl"
-            />
-          </div>
+<div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
+  <TechImage
+    src={agronegocio} // Substituição da URL pela variável importada
+    alt="Agribusiness"
+    className="w-full h-full shadow-2xl"
+  />
+</div>
 
         </div>
       </section>
