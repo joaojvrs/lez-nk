@@ -21,6 +21,9 @@ import {
   Globe
 } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
+import logoLez from "./logo-lez.png";
+import fotoLia from "./foto-lia.jpeg";
+import ChatWidget, { ChatSection } from "./ChatWidget";
 import { 
   BarChart, 
   Bar, 
@@ -60,11 +63,6 @@ const TechImage = ({ src, alt, className = "" }: { src: string, alt: string, cla
         />
         <div className="absolute inset-0 bg-gold/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity" />
       </motion.div>
-      {/* Tech Overlays */}
-      <div className="absolute top-4 right-4 flex gap-2">
-        <div className="w-1 h-1 bg-gold rounded-full animate-ping" />
-        <div className="text-[8px] font-mono text-gold uppercase tracking-tighter">Live_Feed</div>
-      </div>
     </div>
   );
 };
@@ -93,8 +91,8 @@ const PillarCard = ({ icon: Icon, title, percentage, description, index }: any) 
 
 const strategyData = [
   { name: 'Moda/Agro', value: 6, color: '#D4AF37' },
-  { name: 'Tecnologia', value: 14, color: '#1A1A1A' },
-  { name: 'Imobiliário', value: 18, color: '#000000' },
+  { name: 'Tecnologia', value: 14, color: '#6B6B6B' },
+  { name: 'Imobiliário', value: 18, color: '#C0C0C0' },
 ];
 
 const donutData = [
@@ -116,37 +114,40 @@ export default function App() {
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
 
   return (
-    <div ref={containerRef} className="relative bg-paper tech-grid">
+    <div ref={containerRef} className="relative bg-paper">
       {/* Progress Bar */}
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gold z-[100] origin-left" style={{ scaleX }} />
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center bg-dark/90 backdrop-blur-md border-b border-white/5">
         <div className="font-serif font-bold text-xl tracking-tighter flex items-center gap-4">
-          <img src="/LOGO LEZ.png" alt="LÉZ.NK Logo" className="h-12 w-auto object-contain" />
+          <img src={logoLez} alt="LÉZ.NK Logo" className="h-12 w-auto object-contain" />
           <span className="hidden sm:inline text-white">LÉZ.NK CAPITAL</span>
         </div>
-        <div className="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">
+        <div className="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">
           <a href="#bio" className="hover:text-gold transition-colors">Bio</a>
           <a href="#holding" className="hover:text-gold transition-colors">Holding</a>
           <a href="#estrategia" className="hover:text-gold transition-colors">Estratégia</a>
           <a href="#objetivos" className="hover:text-gold transition-colors">Objetivos</a>
+          <a
+            href="#ia"
+            className="flex items-center gap-2 bg-gold text-dark px-4 py-2 hover:bg-white transition-all font-bold tracking-widest"
+          >
+            <span className="relative flex-shrink-0">
+              <span className="absolute inset-0 rounded-full bg-dark/30 animate-ping" />
+              <span className="w-1.5 h-1.5 rounded-full bg-dark inline-block relative z-10" />
+            </span>
+            LÉZ AI
+          </a>
         </div>
         <div className="flex items-center gap-4">
-          <div className="hidden lg:flex flex-col items-end">
-            <span className="text-[8px] font-mono text-white/40 uppercase">System_Status</span>
-            <span className="text-[8px] font-mono text-green-500 uppercase">Online_Secure</span>
-          </div>
-          <button className="bg-gold text-dark px-6 py-2 text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-xl font-bold">
-            Investir
-          </button>
+
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-dark">
-        <div className="scanline" />
-        <motion.div 
+        <motion.div
           style={{ opacity: heroOpacity, scale: heroScale }}
           className="absolute inset-0 z-0"
         >
@@ -165,15 +166,8 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
           >
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-[1px] w-8 bg-gold/50" />
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.5em] font-medium">
-                ESTRUTURAÇÃO_GRUPO_V2.0
-              </span>
-              <div className="h-[1px] w-8 bg-gold/50" />
-            </div>
             <div className="flex justify-center mb-8">
-              <img src="/LOGO LEZ.png" alt="LÉZ.NK Logo" className="h-32 w-auto object-contain" />
+              <img src={logoLez} alt="LÉZ.NK Logo" className="h-32 w-auto object-contain" />
             </div>
             <h1 className="text-white text-6xl md:text-9xl font-serif font-bold mb-8 tracking-tighter leading-none">
               LÉZ.NK <br /> <span className="gold-gradient">CAPITAL</span>
@@ -182,10 +176,8 @@ export default function App() {
               <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.3em]">
                 grupolez.nkcapital.com.br
               </p>
-              <div className="hidden md:block w-2 h-2 rounded-full bg-gold animate-pulse" />
-              <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.3em]">
-                LAT: -23.5505 | LONG: -46.6333
-              </p>
+       
+
             </div>
           </motion.div>
         </div>
@@ -196,164 +188,195 @@ export default function App() {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/30 flex flex-col items-center gap-4"
         >
-          <span className="text-[8px] font-mono uppercase tracking-widest">System_Scroll</span>
           <div className="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent" />
         </motion.div>
       </section>
 
       {/* Biography Section */}
-      <Section className="grid md:grid-cols-2 gap-24 items-center" id="bio">
-        <div className="relative">
-          <TechImage 
-            src="/foto lia.jpeg" 
-            alt="Liä Éden Z’anelato" 
-            className="aspect-[3/4] shadow-2xl"
-          />
-          <div className="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-gold/20 -z-10" />
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-gold/20 -z-10" />
-        </div>
+      <div className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative" id="bio">
+        <div className="flex gap-16 items-stretch">
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-8 h-[1px] bg-gold" />
-            <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">Founder_Profile</span>
+          {/* Image column — width fixed, height stretches to match text */}
+          <div className="relative flex-shrink-0 w-[280px] md:w-[320px]">
+            <TechImage
+              src={fotoLia}
+              alt="Lia Eden Z'anelato"
+              className="w-full h-full shadow-2xl"
+            />
+            <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold/20 -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-            BIOGRAFIA LÉZ. NK Capital LTDA <br />
-            <span className="text-gold">Força, Propósito e Legado</span>
-          </h2>
-          <div className="space-y-6 text-dark/70 leading-relaxed font-sans text-sm">
-            <p className="border-l-2 border-gold/20 pl-6">
-              Fundada pela empresária <span className="text-dark font-bold">Liä Éden Z’anelato</span>, a LÉZ. NK Capital LTDA nasceu quando, aos 40 anos, ela decidiu transformar sua trajetória e direcionar seus investimentos para uma visão mais ampla, estratégica e conectada a múltiplos conhecimentos.
+
+          {/* Text column — flex col, title at top, last line at bottom */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 flex flex-col justify-between"
+          >
+            {/* Title block — anchored to top */}
+            <div>
+              <div className="w-8 h-[1px] bg-gold mb-5" />
+              <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight tracking-tighter uppercase mb-0">
+                BIOGRAFIA LÉZ. NK Capital LTDA<br />
+                <span className="text-gold">Força, Propósito e Legado</span>
+              </h2>
+            </div>
+
+            {/* Body — distributed evenly between title and bottom */}
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
+              Fundada pela empresária <span className="text-dark font-semibold">Liä Éden Z'anelato</span>, a LÉZ. NK Capital LTDA nasceu quando, aos 40 anos, ela decidiu transformar sua trajetória e direcionar seus investimentos para uma visão mais ampla, estratégica e conectada a múltiplos conhecimentos.
             </p>
-            <p>
+
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
               Com olhar voltado para diferentes setores e oportunidades, Liä encontrou na diversificação a essência do seu propósito: construir negócios sólidos, sofisticados e capazes de deixar um legado.
             </p>
-            <p>
+
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
               A inspiração para o desenvolvimento da LÉZ. NK surgiu de uma frase que ela considera a grande virada de chave de sua vida:
             </p>
-            <div className="py-6 border-y border-dark/10 relative my-8">
-              <Quote className="text-gold/20 absolute -top-4 -left-4" size={48} />
-              <p className="text-2xl font-serif italic text-dark leading-snug text-center">
-                “Um se vira bem falado salva um legado.”
+
+            {/* Quote block */}
+            <div className="border-y border-dark/10 py-4 relative">
+              <Quote className="text-gold/20 absolute -top-3 left-0" size={36} />
+              <p className="text-xl font-serif italic text-dark leading-snug text-center">
+                "Um se vira bem falado salva um legado."
               </p>
             </div>
-            <p>
+
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
               A frase foi ouvida em uma conversa marcante, ao conhecer uma pessoa que Liä descreve como um verdadeiro símbolo de força, determinação e superação. Esse encontro foi decisivo para que ela tirasse todos os seus projetos da gaveta e transformasse sonhos, ideias e planos em realidade.
             </p>
-            <p className="font-medium text-dark">
+
+            {/* Last paragraph — anchored to bottom */}
+            <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
               Sua inspiração tem nome, história e propósito — e se tornou a base emocional e estratégica que fortalece a identidade da LÉZ. NK Capital LTDA.
             </p>
-          </div>
-        </motion.div>
-      </Section>
+          </motion.div>
+
+        </div>
+      </div>
 
       {/* Presentation Section */}
       <section className="bg-dark text-white py-32 relative overflow-hidden" id="holding">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
-        <Section className="grid lg:grid-cols-2 gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">Apresentação_Executiva</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8 leading-none tracking-tighter">
-              Portfólio Estratégico para <br />
-              <span className="gold-gradient">Captação de Investidores</span>
-            </h2>
-            <div className="space-y-6 text-white/60 font-sans text-sm leading-relaxed">
-              <p>
-                A LÉZ.NK Capital Holding nasce com o propósito de construir um grupo empresarial sólido, diversificado e escalável, reunindo negócios de alto potencial de valorização em diferentes setores.
-              </p>
-              <p>
-                A estratégia da holding é concentrar investimentos em segmentos com forte demanda, geração de caixa, patrimônio e possibilidade de expansão nacional e internacional.
-              </p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 gap-4">
-              <div className="p-6 glass-card border-white/10">
-                <div className="text-gold font-mono text-[10px] mb-2">Expansion_Index</div>
-                <div className="text-2xl font-bold">Global_Ready</div>
+        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
+          <div className="flex gap-16 items-stretch">
+
+            {/* Left block — title + paragraphs + cards, distributed top-to-bottom */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex-1 flex flex-col justify-between"
+            >
+              {/* Title — anchored to top */}
+              <div>
+                <div className="w-8 h-[1px] bg-gold mb-5" />
+                <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tighter">
+                  Portfólio Estratégico para<br />
+                  <span className="gold-gradient">Captação de Investidores</span>
+                </h2>
               </div>
-              <div className="p-6 glass-card border-white/10">
-                <div className="text-gold font-mono text-[10px] mb-2">Asset_Class</div>
-                <div className="text-2xl font-bold">Multi_Sector</div>
+
+              {/* Paragraphs — distributed in the middle */}
+              <p className="text-white/60 font-sans text-sm leading-[1.9] text-justify">
+                A LÉZ.NK Capital Holding nasce com o propósito de construir um grupo empresarial sólido, diversificado e escalável, reunindo negócios de alto potencial de valorização em diferentes setores da economia.
+              </p>
+
+              <p className="text-white/60 font-sans text-sm leading-[1.9] text-justify">
+                A estratégia da holding é concentrar investimentos em segmentos com forte demanda, geração de caixa, patrimônio e possibilidade de expansão nacional e internacional, criando um ecossistema de empresas complementares e resilientes.
+              </p>
+
+              {/* Classification cards — anchored to bottom */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-6 glass-card border border-white/10">
+                  <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">Expansão</div>
+                  <div className="text-2xl font-bold">Global</div>
+                </div>
+                <div className="p-6 glass-card border border-white/10">
+                  <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">Classe de Ativo</div>
+                  <div className="text-2xl font-bold">Multissetorial</div>
+                </div>
               </div>
+            </motion.div>
+
+            {/* Right block — image, height drives the layout */}
+            <div className="relative flex-shrink-0 w-[45%]">
+              <TechImage
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069"
+                alt="Corporate Strategy"
+                className="w-full h-full shadow-2xl"
+              />
+              <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-gold/10 blur-3xl rounded-full -z-10" />
             </div>
-          </motion.div>
-          <div className="relative">
-            <TechImage 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069" 
-              alt="Corporate Strategy" 
-              className="aspect-video"
-            />
-            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-gold/10 blur-3xl rounded-full -z-10" />
+
           </div>
-        </Section>
+        </div>
       </section>
 
       {/* Mission Vision Values Section */}
-      <Section className="grid md:grid-cols-3 gap-12" id="mvv">
-        <motion.div 
+      <Section className="grid md:grid-cols-3 gap-8 items-stretch" id="mvv">
+
+        {/* Missão */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-8 p-10 glass-card tech-border flex flex-col h-full"
+          className="p-10 glass-card tech-border flex flex-col h-full"
         >
-          <div className="w-14 h-14 bg-gold flex items-center justify-center text-white shadow-2xl">
+          <div className="w-14 h-14 bg-gold flex items-center justify-center text-white shadow-2xl flex-shrink-0">
             <Activity size={28} />
           </div>
-          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter">Missão</h3>
-          <div className="space-y-4 text-dark/60 text-sm leading-relaxed font-sans flex-grow">
-            <p>
+          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter mt-8 mb-8">Missão</h3>
+          <div className="flex-grow flex flex-col justify-between text-dark/60 text-sm font-sans text-justify">
+            <p className="leading-[2]">
               Desenvolver, estruturar e expandir negócios de alto valor agregado a partir de ativos imobiliários, transformando patrimônio em liquidez, crescimento e diversificação inteligente.
             </p>
-            <p>
+            <p className="leading-[2]">
               A holding busca construir um ecossistema empresarial sólido, rentável e sustentável, capaz de gerar patrimônio, impacto e retorno consistente para investidores e parceiros.
             </p>
           </div>
-          <div className="text-[10px] font-mono text-gold/40">CORE_OBJECTIVE_01</div>
         </motion.div>
 
-        <motion.div 
+        {/* Visão */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="space-y-8 p-10 glass-card tech-border flex flex-col h-full"
+          className="p-10 glass-card tech-border flex flex-col h-full"
         >
-          <div className="w-14 h-14 bg-dark flex items-center justify-center text-white shadow-2xl">
+          <div className="w-14 h-14 bg-dark flex items-center justify-center text-white shadow-2xl flex-shrink-0">
             <Layers size={28} />
           </div>
-          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter">Visão</h3>
-          <p className="text-dark/60 text-sm leading-relaxed font-sans flex-grow">
-            Ser reconhecida como uma holding moderna e estratégica, referência em desenvolvimento imobiliário, investimentos, moda, negócios de luxo, hospitalidade e parcerias empresariais no Brasil.
-          </p>
-          <div className="text-[10px] font-mono text-dark/20">FUTURE_STATE_2030</div>
+          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter mt-8 mb-8">Visão</h3>
+          <div className="flex-grow flex flex-col justify-between text-dark/60 text-sm font-sans text-justify">
+            <p className="leading-[2]">
+              Ser reconhecida como uma holding moderna e estratégica, referência em desenvolvimento imobiliário, investimentos, moda, negócios de luxo, hospitalidade e parcerias empresariais no Brasil.
+            </p>
+            <p className="leading-[2] text-dark/40 italic">
+              Uma empresa construída sobre propósito, inovação e visão de longo prazo — capaz de transformar capital em legado duradouro para as próximas gerações.
+            </p>
+          </div>
         </motion.div>
 
-        <motion.div 
+        {/* Valores */}
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="space-y-8 p-10 glass-card tech-border flex flex-col h-full"
+          className="p-10 glass-card tech-border flex flex-col h-full"
         >
-          <div className="w-14 h-14 bg-gold/20 flex items-center justify-center text-gold shadow-2xl">
+          <div className="w-14 h-14 bg-gold/20 flex items-center justify-center text-gold shadow-2xl flex-shrink-0">
             <Globe size={28} />
           </div>
-          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter">Valores</h3>
-          <ul className="space-y-3 text-[10px] uppercase tracking-[0.2em] font-bold text-dark/80 flex-grow">
+          <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter mt-8 mb-8">Valores</h3>
+          <ul className="flex-grow flex flex-col justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-dark/80">
             {[
               "Visão de longo prazo",
               "Crescimento sustentável",
@@ -364,12 +387,12 @@ export default function App() {
               "Excelência na execução"
             ].map((valor, idx) => (
               <li key={idx} className="flex items-center gap-3">
-                <div className="w-1 h-1 bg-gold" /> {valor}
+                <div className="w-1 h-1 bg-gold flex-shrink-0" /> {valor}
               </li>
             ))}
           </ul>
-          <div className="text-[10px] font-mono text-gold/40">ETHICAL_FRAMEWORK</div>
         </motion.div>
+
       </Section>
 
       {/* Objectives Timeline */}
@@ -377,7 +400,7 @@ export default function App() {
         <div className="flex flex-col lg:flex-row gap-24">
           <div className="lg:w-1/3">
             <div className="sticky top-40">
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] mb-4 block font-bold">Roadmap_2026_2036</span>
+              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] mb-4 block font-bold">2026 — 2036</span>
               <h2 className="text-6xl font-serif font-bold mb-8 tracking-tighter leading-none">Objetivos <br /><span className="gold-gradient">Estratégicos</span></h2>
               <div className="p-6 border border-dark/5 bg-white/30 backdrop-blur-sm">
                 <p className="text-xs text-dark/40 font-mono leading-relaxed">
@@ -470,384 +493,473 @@ export default function App() {
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
-        <Section>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-xl">
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] mb-4 block font-bold">Data_Visualization</span>
-              <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 leading-none tracking-tighter">Estratégia de <br />Desenvolvimento</h2>
-              <p className="text-white/40 text-sm font-sans">Análise quantitativa dos pilares de investimento e alocação estratégica de capital.</p>
+        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
+
+          {/* Header row — title left, indicators right, baseline aligned */}
+          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
+            <div>
+              <div className="w-8 h-[1px] bg-gold mb-5" />
+              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 leading-none tracking-tighter">
+                Estratégia de<br />Desenvolvimento
+              </h2>
+              <p className="text-white/25 text-xs font-sans font-mono uppercase tracking-widest">
+                Análise quantitativa dos pilares de investimento e alocação estratégica de capital.
+              </p>
             </div>
-            <div className="flex gap-4">
-              <div className="p-4 border border-white/10 glass-card">
-                <div className="text-[10px] font-mono text-gold mb-1">Total_Assets</div>
-                <div className="text-xl font-bold">R$ 1.2B+</div>
+            <div className="flex gap-3 md:mt-0 mt-2">
+              <div className="px-5 py-4 border border-white/8 bg-white/[0.02]">
+                <div className="text-[9px] font-mono text-gold mb-1 uppercase tracking-widest">Ativos</div>
+                <div className="text-xl font-bold tracking-tight">R$ 1.2B+</div>
               </div>
-              <div className="p-4 border border-white/10 glass-card">
-                <div className="text-[10px] font-mono text-gold mb-1">Growth_Rate</div>
-                <div className="text-xl font-bold">+24.5%</div>
+              <div className="px-5 py-4 border border-white/8 bg-white/[0.02]">
+                <div className="text-[9px] font-mono text-gold mb-1 uppercase tracking-widest">Crescimento</div>
+                <div className="text-xl font-bold tracking-tight">+24.5%</div>
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Donut Charts Simulation */}
-            <div className="space-y-12">
-              <div className="grid grid-cols-3 gap-4">
-                {[70, 25, 15].map((val, i) => (
-                  <motion.div 
+          {/* Main grid — pillars left, bar chart right, equal height */}
+          <div className="flex gap-16 items-stretch">
+
+            {/* Left — donuts + pillars list */}
+            <div className="flex-1 flex flex-col">
+
+              {/* Donut charts — standardized thickness and style */}
+              <div className="grid grid-cols-3 gap-4 mb-8">
+                {[
+                  { val: 70, label: "Imobiliário" },
+                  { val: 25, label: "Hotelaria" },
+                  { val: 15, label: "Inovação" },
+                ].map(({ val, label }, i) => (
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.2 }}
-                    className="flex flex-col items-center gap-4"
+                    transition={{ delay: i * 0.15 }}
+                    className="flex flex-col items-center gap-3"
                   >
-                    <div className="relative w-24 h-24">
+                    <div className="relative w-20 h-20">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
                             data={[{ value: val }, { value: 100 - val }]}
-                            innerRadius={35}
-                            outerRadius={45}
+                            innerRadius={28}
+                            outerRadius={36}
                             paddingAngle={0}
                             dataKey="value"
                             startAngle={90}
                             endAngle={-270}
+                            strokeWidth={0}
                           >
-                            <Cell fill={i === 0 ? "#D4AF37" : i === 1 ? "#FFFFFF" : "#444"} />
-                            <Cell fill="rgba(255,255,255,0.05)" />
+                            <Cell fill="#D4AF37" />
+                            <Cell fill="rgba(255,255,255,0.06)" />
                           </Pie>
                         </PieChart>
                       </ResponsiveContainer>
-                      <div className="absolute inset-0 flex items-center justify-center text-sm font-mono font-bold">
+                      <div className="absolute inset-0 flex items-center justify-center text-xs font-mono font-bold text-gold">
                         {val}%
                       </div>
                     </div>
-                    <span className="text-[8px] font-mono uppercase text-white/40 text-center">
-                      {i === 0 ? "Imobiliário" : i === 1 ? "Hotelaria" : "Inovação"}
+                    <span className="text-[8px] font-mono uppercase text-white/30 text-center tracking-widest">
+                      {label}
                     </span>
                   </motion.div>
                 ))}
               </div>
-              
-              <div className="space-y-6 pt-8 border-t border-white/10">
+
+              {/* Pillars list — flex-1 so it fills remaining height, justify-between for even spread */}
+              <div className="flex-1 flex flex-col justify-between pt-6 border-t border-white/8">
                 {[
-                  { label: "Primeiro Pilar", title: "Desenvolvimento Imobiliário", color: "gold", id: "imobiliario" },
-                  { label: "Segundo Pilar", title: "Hotelaria, Ecoturismo e Experiências", color: "white", id: "hotelaria" },
-                  { label: "Terceiro Pilar", title: "Tecnologia e Inovação", color: "gray", id: "tecnologia" },
-                  { label: "Quarto Pilar", title: "Moda, Marca e Lifestyle", color: "gold", id: "moda" },
-                  { label: "Quinto Pilar", title: "Agronegócio e Ativos Reais", color: "white", id: "agronegocio" },
+                  { label: "Primeiro Pilar", title: "Desenvolvimento Imobiliário", id: "imobiliario" },
+                  { label: "Segundo Pilar", title: "Hotelaria, Ecoturismo e Experiências", id: "hotelaria" },
+                  { label: "Terceiro Pilar", title: "Tecnologia e Inovação", id: "tecnologia" },
+                  { label: "Quarto Pilar", title: "Moda, Marca e Lifestyle", id: "moda" },
+                  { label: "Quinto Pilar", title: "Agronegócio e Ativos Reais", id: "agronegocio" },
                 ].map((item, i) => (
-                  <a key={i} href={`#${item.id}`} className="flex items-center justify-between group cursor-pointer">
+                  <a key={i} href={`#${item.id}`} className="flex items-center justify-between group cursor-pointer py-2">
                     <div>
-                      <div className="text-[8px] font-mono text-gold uppercase mb-1">{item.label}</div>
-                      <div className="text-lg font-serif group-hover:translate-x-2 transition-transform">{item.title}</div>
+                      <div className="text-[8px] font-mono text-gold/70 uppercase mb-1 tracking-widest">{item.label}</div>
+                      <div className="text-base font-serif group-hover:translate-x-2 transition-transform duration-300">{item.title}</div>
                     </div>
-                    <ArrowRight size={16} className="text-white/20 group-hover:text-gold transition-colors" />
+                    <ArrowRight size={14} className="text-white/15 group-hover:text-gold transition-colors flex-shrink-0 ml-4" />
                   </a>
                 ))}
               </div>
             </div>
 
-            {/* Bar Chart */}
-            <motion.div 
+            {/* Right — bar chart, transparent background, same height as left column */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="h-[400px] w-full p-8 glass-card border-white/5"
+              className="flex-1"
             >
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={strategyData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="rgba(255,255,255,0.3)" 
-                    fontSize={10} 
-                    tickLine={false} 
+                <BarChart data={strategyData} margin={{ top: 8, right: 0, left: -16, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="1 4" stroke="rgba(255,255,255,0.04)" vertical={false} />
+                  <XAxis
+                    dataKey="name"
+                    stroke="rgba(255,255,255,0.15)"
+                    fontSize={9}
+                    tickLine={false}
                     axisLine={false}
                     fontFamily="JetBrains Mono"
+                    tick={{ fill: 'rgba(255,255,255,0.25)' }}
                   />
-                  <YAxis 
-                    stroke="rgba(255,255,255,0.3)" 
-                    fontSize={10} 
-                    tickLine={false} 
+                  <YAxis
+                    stroke="rgba(255,255,255,0.15)"
+                    fontSize={9}
+                    tickLine={false}
                     axisLine={false}
                     fontFamily="JetBrains Mono"
+                    tick={{ fill: 'rgba(255,255,255,0.20)' }}
                   />
-                  <Tooltip 
-                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                    contentStyle={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(212,175,55,0.2)', fontSize: '10px', fontFamily: 'JetBrains Mono' }}
+                  <Tooltip
+                    cursor={{ fill: 'rgba(212,175,55,0.04)' }}
+                    contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(212,175,55,0.15)', fontSize: '10px', fontFamily: 'JetBrains Mono', color: '#fff' }}
                   />
-                  <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+                  <Bar dataKey="value" radius={[2, 2, 0, 0]} maxBarSize={64}>
                     {strategyData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
-              <div className="mt-4 flex justify-between text-[8px] font-mono text-white/20 uppercase">
-                <span>Metric_ID: STRAT_001</span>
-                <span>Last_Updated: 2026.04.09</span>
-              </div>
             </motion.div>
+
           </div>
-        </Section>
+        </div>
       </section>
 
       {/* Real Estate Detail Section */}
-      <Section id="imobiliario" className="border-t border-dark/5">
-        <div className="flex flex-col lg:flex-row gap-24 items-center">
-          <div className="lg:w-1/2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">LÉZ.NK Capital</span>
+      <section id="imobiliario" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex gap-14 items-stretch">
+
+          {/* Left block — flex col: title at top, paragraph + columns pulled to base by mt-auto */}
+          <div className="flex-1 flex flex-col min-w-0">
+
+            {/* TOP — label + title, flush with image top */}
+            <div>
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+              </div>
+              <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                DESENVOLVIMENTO<br />IMOBILIÁRIO
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-              D E S E N V O L V I M E N T O <br />
-              I M O B I L I Á R I O
-            </h2>
-            <div className="space-y-6 text-dark/70 text-sm leading-relaxed font-sans">
-              <p className="font-bold text-dark">Investimento e principal base de crescimento da holding.</p>
-              <p>
-                Utilizar bens imobiliários para gerar liquidez, ampliar patrimônio e criar novas oportunidades de investimento. O setor imobiliário será a origem dos recursos e da valorização que sustentará a expansão para os demais negócios.
+
+            {/* MIDDLE — mt-auto floats this block toward the base; tight leading for density */}
+            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+              <p className="font-bold text-dark mb-2 leading-snug">
+                Investimento e principal base de crescimento da holding.
               </p>
-              
-              <div className="grid md:grid-cols-2 gap-8 pt-8">
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Estruturação</h4>
-                  <ul className="space-y-2 text-xs">
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Condomínios residenciais de alto padrão</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Casas e mansões de luxo</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Loteamentos e urbanização</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Retrofit e valorização de imóveis</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Compra, venda e permuta de terrenos estratégicos</li>
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Objetivo</h4>
-                  <p className="text-xs italic">
-                    Transformar o segmento imobiliário na principal fonte de patrimônio, liquidez e rentabilidade da holding.
-                  </p>
-                </div>
+              <p className="leading-[1.7] text-justify">
+                Utilizar bens imobiliários para gerar liquidez, ampliar patrimônio e criar novas oportunidades de investimento. O setor imobiliário será a origem dos recursos e da valorização que sustentará a expansão para os demais negócios da holding.
+              </p>
+            </div>
+
+            {/* BOTTOM — Estruturação + Objetivo, base flush with image bottom */}
+            <div className="grid grid-cols-2 gap-8 items-start">
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Estruturação</h4>
+                <ul className="space-y-[7px] text-xs text-dark/70 font-sans">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Condomínios residenciais de alto padrão</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Casas e mansões de luxo</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Loteamentos e urbanização</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Retrofit e valorização de imóveis</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Compra, venda e permuta de terrenos</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Objetivo</h4>
+                <p className="text-xs italic text-dark/70 font-sans leading-[1.7]">
+                  Transformar o segmento imobiliário na principal fonte de patrimônio, liquidez e rentabilidade da holding.
+                </p>
               </div>
             </div>
+
           </div>
-          <div className="lg:w-1/2">
-            <TechImage 
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2070" 
-              alt="Luxury Real Estate" 
-              className="aspect-square"
+
+          {/* RIGHT — square image, reduced size; anchors the row height */}
+          <div className="flex-shrink-0 w-[38%]" style={{ aspectRatio: '1/1' }}>
+            <TechImage
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2070"
+              alt="Luxury Real Estate"
+              className="w-full h-full shadow-2xl"
             />
           </div>
+
         </div>
-      </Section>
+      </section>
 
       {/* Hospitality Detail Section */}
       <section className="bg-dark text-white py-32 relative overflow-hidden" id="hotelaria">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
-        <Section>
-          <div className="flex flex-col lg:flex-row-reverse gap-24 items-center">
-            <div className="lg:w-1/2">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-[1px] bg-gold" />
-                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">LÉZ.NK Capital</span>
+        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+          <div className="flex flex-row-reverse gap-14 items-stretch">
+
+            {/* LEFT (visual) — square image anchors row height */}
+            <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070"
+                alt="Luxury Hospitality"
+                className="w-full h-full shadow-2xl"
+              />
+            </div>
+
+            {/* RIGHT (visual) — text block, title at top, columns at base */}
+            <div className="flex-1 flex flex-col min-w-0">
+
+              {/* TOP — label + title flush with image top */}
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                  <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+                </div>
+                <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                  H O T E L A R I A ,<br />
+                  E C O T U R I S M O<br />
+                  E X P E R I Ê N C I A S
+                </h2>
               </div>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-                H O T E L A R I A , <br />
-                E C O T U R I S M O <br />
-                E E X P E R I Ê N C I A S
-              </h2>
-              <div className="space-y-6 text-white/60 text-sm leading-relaxed font-sans">
-                <p className="font-bold text-white">Investimento e principal base de crescimento da holding.</p>
-                <p>
+
+              {/* MIDDLE — mt-auto pulls this block toward the base */}
+              <div className="mt-auto mb-6 text-white/60 text-sm font-sans">
+                <p className="font-bold text-white mb-2 leading-snug">
+                  Investimento e principal base de crescimento da holding.
+                </p>
+                <p className="leading-[1.7] mb-3">
                   A hotelaria será o segundo grande movimento estratégico do grupo, utilizando imóveis próprios ou adquiridos pela holding para criar operações com geração de caixa recorrente, valorização patrimonial e fortalecimento da marca.
                 </p>
-                <p>
+                <p className="leading-[1.7]">
                   A estratégia é selecionar localizações com alto potencial turístico, natureza preservada e procura crescente por experiências exclusivas, transformando esses ativos em empreendimentos de hospitalidade com posicionamento premium.
                 </p>
+              </div>
 
-                <div className="grid md:grid-cols-2 gap-8 pt-8">
-                  <div className="space-y-4">
-                    <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Estratégia</h4>
-                    <ul className="space-y-2 text-[10px]">
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Adquirir ou desenvolver imóveis em regiões com potencial turístico e de valorização.</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Transformar os ativos em hotéis boutique, pousadas de charme, casas de temporada ou operações de ecoturismo.</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Integrar hotelaria, experiência, gastronomia e natureza em um único conceito.</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Criar operações capazes de gerar renda recorrente, valorização do imóvel e fortalecimento da marca do grupo.</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-4">
-                    <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Possibilidades</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["Boutique hotel", "Hotel fazenda", "Pousadas de charme", "Beach club", "Casas de temporada de alto padrão", "Espaços para eventos", "Ecoturismo"].map((p, i) => (
-                        <span key={i} className="px-2 py-1 bg-white/5 border border-white/10 text-[9px] uppercase tracking-tighter">{p}</span>
-                      ))}
-                    </div>
+              {/* BOTTOM — Estratégia + Possibilidades, base flush with image bottom */}
+              <div className="grid grid-cols-2 gap-8 items-start">
+                <div>
+                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Estratégia</h4>
+                  <ul className="space-y-[7px] text-[10px] text-white/60 font-sans">
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Adquirir ou desenvolver imóveis em regiões com potencial turístico e de valorização.</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Transformar os ativos em hotéis boutique, pousadas de charme, casas de temporada ou operações de ecoturismo.</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Integrar hotelaria, experiência, gastronomia e natureza em um único conceito.</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Criar operações capazes de gerar renda recorrente, valorização do imóvel e fortalecimento da marca do grupo.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
+                  <div className="flex flex-wrap gap-[6px]">
+                    {["Boutique hotel", "Hotel fazenda", "Pousadas de charme", "Beach club", "Casas de temporada", "Espaços para eventos", "Ecoturismo"].map((p, i) => (
+                      <span key={i} className="px-[7px] py-[3px] border border-gold/35 text-gold/65 text-[9px] uppercase tracking-widest font-mono">{p}</span>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="lg:w-1/2">
-              <TechImage 
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070" 
-                alt="Luxury Hospitality" 
-                className="aspect-square"
-              />
+
             </div>
           </div>
-        </Section>
+        </div>
       </section>
 
       {/* Technology Detail Section */}
-      <Section id="tecnologia" className="border-t border-dark/5">
-        <div className="flex flex-col lg:flex-row gap-24 items-center">
-          <div className="lg:w-1/2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">LÉZ.NK Capital</span>
+      <section id="tecnologia" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex gap-14 items-stretch">
+
+          {/* LEFT — text block: title at top, columns flush at base */}
+          <div className="flex-1 flex flex-col min-w-0">
+
+            {/* TOP — label + title flush with image top */}
+            <div>
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+              </div>
+              <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                T E C N O L O G I A ,<br />
+                N E G Ó C I O S<br />
+                D I G I T A I S,<br />
+               I N O V A Ç Ã O
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-              T E C N O L O G I A , <br />
-              N E G Ó C I O S <br />
-              D I G I T A I S <br />
-              E I N O V A Ç Ã O
-            </h2>
-            <div className="space-y-6 text-dark/70 text-sm leading-relaxed font-sans">
-              <p className="font-bold text-dark">Tecnologia e negócios digitais como forma de criar escalabilidade.</p>
-              <p>
+
+            {/* MIDDLE — mt-auto pulls this toward the base */}
+            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+              <p className="font-bold text-dark mb-2 leading-snug">
+                Tecnologia e negócios digitais como forma de criar escalabilidade.
+              </p>
+              <p className="leading-[1.7]">
                 A holding vai aportar investimentos em tecnologia e negócios digitais como forma de criar escalabilidade, presença de marca e novas fontes de receita.
               </p>
-              
-              <div className="grid md:grid-cols-2 gap-8 pt-8">
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Possibilidades</h4>
-                  <ul className="space-y-2 text-xs">
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Plataformas digitais</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Aplicativos e soluções tecnológicas</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Marketing e mídia digital</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Produção de conteúdo</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Cursos, mentorias e networking</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Automação e inteligência para os negócios do grupo</li>
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Objetivo</h4>
-                  <p className="text-xs italic">
-                    Criar negócios escaláveis, com baixo custo operacional e alto potencial de crescimento.
-                  </p>
-                </div>
+            </div>
+
+            {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
+            <div className="grid grid-cols-2 gap-8 items-start">
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
+                <ul className="space-y-[7px] text-xs text-dark/70 font-sans">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Plataformas digitais</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Aplicativos e soluções tecnológicas</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Marketing e mídia digital</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Produção de conteúdo</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Cursos, mentorias e networking</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Automação e inteligência para os negócios do grupo</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Objetivo</h4>
+                <p className="text-xs italic text-dark/70 font-sans leading-[1.8]">
+                  Criar negócios escaláveis, com baixo custo operacional e alto potencial de crescimento, gerando presença de marca, receita recorrente e inteligência aplicada aos demais braços da holding.
+                </p>
               </div>
             </div>
+
           </div>
-          <div className="lg:w-1/2">
-            <TechImage 
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070" 
-              alt="Technology and Innovation" 
-              className="aspect-square"
+
+          {/* RIGHT — square image anchors row height */}
+          <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
+            <TechImage
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
+              alt="Technology and Innovation"
+              className="w-full h-full shadow-2xl"
             />
           </div>
+
         </div>
-      </Section>
+      </section>
 
       {/* Fashion Detail Section */}
       <section className="bg-dark text-white py-32 relative overflow-hidden" id="moda">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
-        <Section>
-          <div className="flex flex-col lg:flex-row-reverse gap-24 items-center">
-            <div className="lg:w-1/2">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-8 h-[1px] bg-gold" />
-                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">LÉZ.NK Capital</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-                M O D A , <br />
-                M A R C A <br />
-                E L I F E S T Y L E
-              </h2>
-              <div className="space-y-6 text-white/60 text-sm leading-relaxed font-sans">
-                <p className="font-bold text-white">Desenvolvimento de marca própria focada em posicionamento premium e lifestyle.</p>
-                
-                <div className="grid md:grid-cols-2 gap-8 pt-8">
-                  <div className="space-y-4">
-                    <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Possibilidades</h4>
-                    <ul className="space-y-2 text-[10px]">
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Marca de roupas e acessórios</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Linha de produtos exclusivos</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Parcerias com influenciadores e celebridades</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Eventos e campanhas de branding</li>
-                      <li className="flex items-start gap-2"><div className="mt-1 w-1 h-1 bg-gold shrink-0" /> Expansão para e-commerce e lojas conceito</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-4">
-                    <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Objetivo</h4>
-                    <p className="text-xs italic">
-                      Criar uma marca forte, com identidade própria, capaz de gerar valor emocional e recorrência de receita.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/2">
-              <TechImage 
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2070" 
-                alt="Fashion and Lifestyle" 
-                className="aspect-square"
+        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+          <div className="flex flex-row-reverse gap-14 items-stretch">
+
+            {/* LEFT (visual) — square image anchors row height */}
+            <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2070"
+                alt="Fashion and Lifestyle"
+                className="w-full h-full shadow-2xl"
               />
             </div>
-          </div>
-        </Section>
-      </section>
 
-      {/* Agribusiness Detail Section */}
-      <Section id="agronegocio" className="border-t border-dark/5">
-        <div className="flex flex-col lg:flex-row gap-24 items-center">
-          <div className="lg:w-1/2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">LÉZ.NK Capital</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 leading-tight tracking-tighter uppercase">
-              A G R O N E G Ó C I O <br />
-              E A T I V O S <br />
-              R E A I S
-            </h2>
-            <div className="space-y-6 text-dark/70 text-sm leading-relaxed font-sans">
-              <p className="font-bold text-dark">Investimentos em ativos reais como forma de proteção patrimonial e expansão futura.</p>
-              
-              <div className="grid md:grid-cols-2 gap-8 pt-8">
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Possibilidades</h4>
-                  <ul className="space-y-2 text-xs">
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Terras e fazendas</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Produção rural</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Projetos de valorização de terras</li>
-                    <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold" /> Parcerias em commodities e logística</li>
+            {/* RIGHT (visual) — text block: title at top, columns at base */}
+            <div className="flex-1 flex flex-col min-w-0">
+
+              {/* TOP — label + title flush with image top */}
+              <div>
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                  <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+                </div>
+                <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                  M O D A ,<br />
+                  M A R C A,<br />
+                  L I F E S T Y L E
+                </h2>
+              </div>
+
+              {/* MIDDLE — mt-auto pulls this block toward the base */}
+              <div className="mt-auto mb-6 text-white/60 text-sm font-sans">
+                <p className="font-bold text-white leading-snug">
+                  Desenvolvimento de marca própria focada em posicionamento premium e lifestyle.
+                </p>
+              </div>
+
+              {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
+              <div className="grid grid-cols-2 gap-8 items-start">
+                <div>
+                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
+                  <ul className="space-y-[7px] text-[10px] text-white/60 font-sans">
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Marca de roupas e acessórios</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Linha de produtos exclusivos</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Parcerias com influenciadores e celebridades</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Eventos e campanhas de branding</li>
+                    <li className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />Expansão para e-commerce e lojas conceito</li>
                   </ul>
                 </div>
-                <div className="space-y-4">
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold">Objetivo</h4>
-                  <p className="text-xs italic">
-                    Criar segurança patrimonial, equilíbrio para o portfólio e uma base sólida de longo prazo.
+                <div>
+                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Objetivo</h4>
+                  <p className="text-xs italic text-white/60 font-sans leading-[1.8]">
+                    Criar uma marca forte, com identidade própria, capaz de gerar valor emocional, recorrência de receita e ampliar o reconhecimento do grupo nos segmentos de luxo e lifestyle.
                   </p>
                 </div>
               </div>
+
             </div>
           </div>
-          <div className="lg:w-1/2">
-            <TechImage 
-              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2070" 
-              alt="Agribusiness" 
-              className="aspect-square"
+        </div>
+      </section>
+
+      {/* Agribusiness Detail Section */}
+      <section id="agronegocio" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex gap-14 items-stretch">
+
+          {/* LEFT — text block: title at top, columns at base */}
+          <div className="flex-1 flex flex-col min-w-0">
+
+            {/* TOP — label + title flush with image top */}
+            <div>
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+              </div>
+              <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                A G R O N E G Ó C I O<br />
+                E  A T I V O S<br />
+                R E A I S
+              </h2>
+            </div>
+
+            {/* MIDDLE — mt-auto pulls this block toward the base */}
+            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+              <p className="font-bold text-dark leading-snug">
+                Investimentos em ativos reais como forma de proteção patrimonial e expansão futura.
+              </p>
+            </div>
+
+            {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
+            <div className="grid grid-cols-2 gap-8 items-start">
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
+                <ul className="space-y-[11px] text-xs text-dark/70 font-sans">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Terras e fazendas</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Produção rural</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Projetos de valorização de terras</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-gold flex-shrink-0" />Parcerias em commodities e logística</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Objetivo</h4>
+                <p className="text-xs italic text-dark/70 font-sans leading-[2]">
+                  Criar segurança patrimonial, equilíbrio para o portfólio e uma base sólida de longo prazo, gerando reserva de valor e oportunidades de expansão para os demais negócios da holding.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT — square image anchors row height */}
+          <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
+            <TechImage
+              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2070"
+              alt="Agribusiness"
+              className="w-full h-full shadow-2xl"
             />
           </div>
+
         </div>
-      </Section>
+      </section>
+
+      <ChatSection />
+
       <footer className="bg-dark text-white py-32 relative overflow-hidden">
-        <div className="scanline" />
         <Section className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -856,7 +968,7 @@ export default function App() {
             className="mb-20"
           >
             <div className="flex justify-center mb-12">
-              <img src="/LOGO LEZ.png" alt="LÉZ.NK Logo" className="h-24 w-auto object-contain" />
+              <img src={logoLez} alt="LÉZ.NK Logo" className="h-24 w-auto object-contain" />
             </div>
             <h2 className="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tighter">LÉZ.NK <span className="gold-gradient">CAPITAL</span></h2>
             <p className="text-white/40 font-mono uppercase tracking-[0.5em] text-[10px]">grupolez.nkcapital.com.br</p>
@@ -864,23 +976,25 @@ export default function App() {
           
           <div className="grid md:grid-cols-3 gap-16 w-full pt-20 border-t border-white/5 text-[10px] font-mono uppercase tracking-[0.2em] text-white/40">
             <div className="space-y-4">
-              <p className="text-gold font-bold mb-6">Location_Data</p>
-              <p className="hover:text-white transition-colors cursor-pointer">São Paulo, BR_HQ</p>
+              <p className="text-gold font-bold mb-6">Escritório</p>
+              <p className="hover:text-white transition-colors cursor-pointer">São Paulo, Brasil</p>
               <p className="hover:text-white transition-colors cursor-pointer">Av. Faria Lima, 4500</p>
             </div>
             <div className="space-y-4">
-              <p className="text-gold font-bold mb-6">Comms_Channel</p>
+              <p className="text-gold font-bold mb-6">Contato</p>
               <p className="hover:text-white transition-colors cursor-pointer">invest@leznkcapital.com</p>
               <p className="hover:text-white transition-colors cursor-pointer">+55 11 9999-9999</p>
             </div>
             <div className="space-y-4">
-              <p className="text-gold font-bold mb-6">System_Info</p>
-              <p>© 2026 LÉZ.NK_CAPITAL_LTDA</p>
-              <p>All_Rights_Reserved_v2.4</p>
+              <p className="text-gold font-bold mb-6">Legal</p>
+              <p>© 2026 LÉZ.NK Capital LTDA</p>
+              <p>Todos os direitos reservados</p>
             </div>
           </div>
         </Section>
       </footer>
+
+      <ChatWidget />
     </div>
   );
 }
