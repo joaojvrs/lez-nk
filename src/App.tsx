@@ -177,7 +177,7 @@ export default function App() {
             </h1>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.3em]">
-                grupolez.nkcapital.com.br
+                presidentegrupolez@gmail.com
               </p>
        
 
@@ -281,7 +281,7 @@ export default function App() {
                 <div className="w-8 h-[1px] bg-gold mb-5" />
                 <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tighter">
                   Portfólio Estratégico para<br />
-                  <span className="gold-gradient">Captação de Investidores</span>
+                  
                 </h2>
               </div>
 
