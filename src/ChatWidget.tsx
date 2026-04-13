@@ -196,7 +196,7 @@ export function ChatSection() {
   const { messages, input, setInput, loading, send } = useChat();
 
   return (
-    <section className="bg-dark text-white py-32 relative overflow-hidden" id="ia">
+    <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="ia">
       {/* Background grid */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <div className="tech-grid w-full h-full" />

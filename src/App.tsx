@@ -4,21 +4,23 @@
  */
 
 import { motion, useScroll, useTransform, useSpring, useInView } from "motion/react";
-import { 
-  Building2, 
-  Palmtree, 
-  Cpu, 
-  ShoppingBag, 
-  Wheat, 
-  Target, 
-  Eye, 
+import {
+  Building2,
+  Palmtree,
+  Cpu,
+  ShoppingBag,
+  Wheat,
+  Target,
+  Eye,
   ShieldCheck,
   ChevronRight,
   ArrowRight,
   Quote,
   Activity,
   Layers,
-  Globe
+  Globe,
+  Menu,
+  X
 } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
 import logoLez from "./logo-lez.png";
@@ -27,21 +29,21 @@ import agronegocio from "./agronegocio.jpeg";
 import devimob from "./desenvolvimento imobiliario.jpeg";
 import hotelaria from "./hotelaria.jpeg";
 import ChatWidget, { ChatSection } from "./ChatWidget";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer, 
-  PieChart, 
-  Pie, 
-  Cell 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
 } from 'recharts';
 
 const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => (
-  <section id={id} className={`py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative ${className}`}>
+  <section id={id} className={`py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative ${className}`}>
     {children}
   </section>
 );
@@ -58,9 +60,9 @@ const TechImage = ({ src, alt, className = "" }: { src: string, alt: string, cla
         transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
         className="w-full h-full"
       >
-        <img 
-          src={src} 
-          alt={alt} 
+        <img
+          src={src}
+          alt={alt}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
@@ -71,7 +73,7 @@ const TechImage = ({ src, alt, className = "" }: { src: string, alt: string, cla
 };
 
 const PillarCard = ({ icon: Icon, title, percentage, description, index }: any) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -116,6 +118,8 @@ export default function App() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div ref={containerRef} className="relative bg-paper">
       {/* Progress Bar */}
@@ -143,9 +147,53 @@ export default function App() {
             LÉZ AI
           </a>
         </div>
-        <div className="flex items-center gap-4">
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden text-white p-1 focus:outline-none"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Menu"
+        >
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
 
-        </div>
+        {/* Mobile menu dropdown */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute top-full left-0 w-full bg-dark border-t border-white/5 py-6 px-6 flex flex-col gap-5 z-50"
+          >
+            {[
+              { href: "#bio", label: "Bio" },
+              { href: "#holding", label: "Holding" },
+              { href: "#estrategia", label: "Estratégia" },
+              { href: "#objetivos", label: "Objetivos" },
+            ].map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-white/60 hover:text-gold transition-colors text-xs uppercase tracking-[0.25em] font-bold"
+              >
+                {label}
+              </a>
+            ))}
+            <a
+              href="#ia"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 bg-gold text-dark px-4 py-2 self-start font-bold text-xs uppercase tracking-widest"
+            >
+              <span className="relative flex-shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-dark inline-block relative z-10" />
+              </span>
+              LÉZ AI
+            </a>
+          </motion.div>
+        )}
+
+        <div className="hidden md:flex items-center gap-4" />
       </nav>
 
       {/* Hero Section */}
@@ -154,9 +202,9 @@ export default function App() {
           style={{ opacity: heroOpacity, scale: heroScale }}
           className="absolute inset-0 z-0"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" 
-            alt="Modern Architecture" 
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
+            alt="Modern Architecture"
             className="w-full h-full object-cover opacity-40 grayscale"
             referrerPolicy="no-referrer"
           />
@@ -170,22 +218,20 @@ export default function App() {
             transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
           >
             <div className="flex justify-center mb-8">
-              <img src={logoLez} alt="LÉZ.NK Logo" className="h-32 w-auto object-contain" />
+              <img src={logoLez} alt="LÉZ.NK Logo" className="h-20 md:h-32 w-auto object-contain" />
             </div>
-            <h1 className="text-white text-6xl md:text-9xl font-serif font-bold mb-8 tracking-tighter leading-none">
+            <h1 className="text-white text-5xl md:text-9xl font-serif font-bold mb-8 tracking-tighter leading-none">
               LÉZ.NK <br /> <span className="gold-gradient">CAPITAL</span>
             </h1>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
               <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.3em]">
                 grupolez.nkcapital.com.br
               </p>
-       
-
             </div>
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -196,11 +242,11 @@ export default function App() {
       </section>
 
       {/* Biography Section */}
-      <div className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative" id="bio">
-        <div className="flex gap-16 items-stretch">
+      <div className="py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative" id="bio">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-stretch">
 
-          {/* Image column — width fixed, height stretches to match text */}
-          <div className="relative flex-shrink-0 w-[280px] md:w-[320px]">
+          {/* Image column */}
+          <div className="relative flex-shrink-0 w-full h-72 md:h-auto md:w-[280px] lg:w-[320px]">
             <TechImage
               src={fotoLia}
               alt="Lia Eden Z'anelato"
@@ -210,24 +256,23 @@ export default function App() {
             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
           </div>
 
-          {/* Text column — flex col, title at top, last line at bottom */}
+          {/* Text column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex-1 flex flex-col justify-between"
+            className="flex-1 flex flex-col justify-between gap-5 md:gap-0"
           >
-            {/* Title block — anchored to top */}
+            {/* Title block */}
             <div>
               <div className="w-8 h-[1px] bg-gold mb-5" />
-              <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight tracking-tighter uppercase mb-0">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold leading-tight tracking-tighter uppercase mb-0">
                 BIOGRAFIA LÉZ. NK Capital LTDA<br />
                 <span className="text-gold">Força, Propósito e Legado</span>
               </h2>
             </div>
 
-            {/* Body — distributed evenly between title and bottom */}
             <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
               Fundada pela empresária <span className="text-dark font-semibold">Liä Éden Z'anelato</span>, a LÉZ. NK Capital LTDA nasceu quando, aos 40 anos, ela decidiu transformar sua trajetória e direcionar seus investimentos para uma visão mais ampla, estratégica e conectada a múltiplos conhecimentos.
             </p>
@@ -252,7 +297,6 @@ export default function App() {
               A frase foi ouvida em uma conversa marcante, ao conhecer uma pessoa que Liä descreve como um verdadeiro símbolo de força, determinação e superação. Esse encontro foi decisivo para que ela tirasse todos os seus projetos da gaveta e transformasse sonhos, ideias e planos em realidade.
             </p>
 
-            {/* Last paragraph — anchored to bottom */}
             <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
               Sua inspiração tem nome, história e propósito — e se tornou a base emocional e estratégica que fortalece a identidade da LÉZ. NK Capital LTDA.
             </p>
@@ -262,30 +306,28 @@ export default function App() {
       </div>
 
       {/* Presentation Section */}
-      <section className="bg-dark text-white py-32 relative overflow-hidden" id="holding">
+      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="holding">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
-          <div className="flex gap-16 items-stretch">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-stretch">
 
-            {/* Left block — title + paragraphs + cards, distributed top-to-bottom */}
+            {/* Left block */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex-1 flex flex-col justify-between"
+              className="flex-1 flex flex-col justify-between gap-6 md:gap-0"
             >
-              {/* Title — anchored to top */}
               <div>
                 <div className="w-8 h-[1px] bg-gold mb-5" />
-                <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tighter">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight tracking-tighter">
                   Portfólio Estratégico para<br />
                   <span className="gold-gradient">Captação de Investidores</span>
                 </h2>
               </div>
 
-              {/* Paragraphs — distributed in the middle */}
               <p className="text-white/60 font-sans text-sm leading-[1.9] text-justify">
                 A LÉZ.NK Capital Holding nasce com o propósito de construir um grupo empresarial sólido, diversificado e escalável, reunindo negócios de alto potencial de valorização em diferentes setores da economia.
               </p>
@@ -294,7 +336,6 @@ export default function App() {
                 A estratégia da holding é concentrar investimentos em segmentos com forte demanda, geração de caixa, patrimônio e possibilidade de expansão nacional e internacional, criando um ecossistema de empresas complementares e resilientes.
               </p>
 
-              {/* Classification cards — anchored to bottom */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-6 glass-card border border-white/10">
                   <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">Expansão</div>
@@ -307,8 +348,8 @@ export default function App() {
               </div>
             </motion.div>
 
-            {/* Right block — image, height drives the layout */}
-            <div className="relative flex-shrink-0 w-[45%]">
+            {/* Right block — image */}
+            <div className="relative flex-shrink-0 w-full h-64 md:h-auto md:w-[45%]">
               <TechImage
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069"
                 alt="Corporate Strategy"
@@ -400,11 +441,11 @@ export default function App() {
 
       {/* Objectives Timeline */}
       <Section id="objetivos">
-        <div className="flex flex-col lg:flex-row gap-24">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-24">
           <div className="lg:w-1/3">
-            <div className="sticky top-40">
+            <div className="lg:sticky lg:top-40">
               <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] mb-4 block font-bold">2026 — 2036</span>
-              <h2 className="text-6xl font-serif font-bold mb-8 tracking-tighter leading-none">Objetivos <br /><span className="gold-gradient">Estratégicos</span></h2>
+              <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8 tracking-tighter leading-none">Objetivos <br /><span className="gold-gradient">Estratégicos</span></h2>
               <div className="p-6 border border-dark/5 bg-white/30 backdrop-blur-sm">
                 <p className="text-xs text-dark/40 font-mono leading-relaxed">
                   Nosso planejamento é dividido em fases de execução técnica para garantir a escalabilidade e segurança do patrimônio.
@@ -412,11 +453,11 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="lg:w-2/3 space-y-32">
+          <div className="lg:w-2/3 space-y-16 md:space-y-32">
             {[
-              { 
-                phase: "Curto Prazo", 
-                time: "12 Meses", 
+              {
+                phase: "Curto Prazo",
+                time: "12 Meses",
                 title: "Consolidação e Estruturação",
                 items: [
                   "Estruturar a holding e consolidar sua identidade institucional.",
@@ -426,9 +467,9 @@ export default function App() {
                 ],
                 color: "gold"
               },
-              { 
-                phase: "Médio Prazo", 
-                time: "2 a 5 Anos", 
+              {
+                phase: "Médio Prazo",
+                time: "2 a 5 Anos",
                 title: "Expansão e Diversificação",
                 items: [
                   "Expandir para moda, lifestyle e agronegócio.",
@@ -439,9 +480,9 @@ export default function App() {
                 ],
                 color: "dark"
               },
-              { 
-                phase: "Longo Prazo", 
-                time: "5 a 10 Anos", 
+              {
+                phase: "Longo Prazo",
+                time: "5 a 10 Anos",
                 title: "Liderança Multissetorial",
                 items: [
                   "Tornar-se uma holding multissetorial consolidada.",
@@ -452,7 +493,7 @@ export default function App() {
                 color: "gold"
               }
             ].map((obj, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -460,7 +501,7 @@ export default function App() {
                 className="relative pl-16 group"
               >
                 <div className="absolute left-0 top-0 h-full w-[1px] bg-dark/10">
-                  <motion.div 
+                  <motion.div
                     initial={{ height: 0 }}
                     whileInView={{ height: "100%" }}
                     viewport={{ once: true }}
@@ -469,14 +510,14 @@ export default function App() {
                   />
                 </div>
                 <div className="absolute -left-[5px] top-0 w-3 h-3 rounded-full bg-dark border-2 border-gold group-hover:scale-150 transition-transform" />
-                
+
                 <div className="flex items-center gap-4 mb-6">
                   <span className={`text-[10px] font-mono uppercase tracking-widest px-3 py-1 ${obj.color === 'gold' ? 'bg-gold text-white' : 'bg-dark text-white'}`}>
                     {obj.phase}
                   </span>
                   <span className="text-[10px] font-mono text-dark/40">{obj.time}</span>
                 </div>
-                <h3 className="text-3xl font-serif font-bold mb-8 tracking-tight">{obj.title}</h3>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-8 tracking-tight">{obj.title}</h3>
                 <ul className="space-y-6">
                   {obj.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-4 text-dark/60 group/item">
@@ -492,17 +533,17 @@ export default function App() {
       </Section>
 
       {/* Strategy Charts Section */}
-      <section className="bg-dark text-white py-32 relative overflow-hidden" id="estrategia">
+      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="estrategia">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
 
-          {/* Header row — title left, indicators right, baseline aligned */}
-          <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-8">
+          {/* Header row */}
+          <div className="flex flex-col md:flex-row justify-between items-start mb-12 md:mb-16 gap-8">
             <div>
               <div className="w-8 h-[1px] bg-gold mb-5" />
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 leading-none tracking-tighter">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-4 leading-none tracking-tighter">
                 Estratégia de<br />Desenvolvimento
               </h2>
               <p className="text-white/25 text-xs font-sans font-mono uppercase tracking-widest">
@@ -521,13 +562,13 @@ export default function App() {
             </div>
           </div>
 
-          {/* Main grid — pillars left, bar chart right, equal height */}
-          <div className="flex gap-16 items-stretch">
+          {/* Main grid */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-stretch">
 
             {/* Left — donuts + pillars list */}
             <div className="flex-1 flex flex-col">
 
-              {/* Donut charts — standardized thickness and style */}
+              {/* Donut charts */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
                   { val: 70, label: "Imobiliário" },
@@ -542,13 +583,13 @@ export default function App() {
                     transition={{ delay: i * 0.15 }}
                     className="flex flex-col items-center gap-3"
                   >
-                    <div className="relative w-20 h-20">
+                    <div className="relative w-16 h-16 md:w-20 md:h-20">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
                             data={[{ value: val }, { value: 100 - val }]}
-                            innerRadius={28}
-                            outerRadius={36}
+                            innerRadius={22}
+                            outerRadius={30}
                             paddingAngle={0}
                             dataKey="value"
                             startAngle={90}
@@ -560,18 +601,18 @@ export default function App() {
                           </Pie>
                         </PieChart>
                       </ResponsiveContainer>
-                      <div className="absolute inset-0 flex items-center justify-center text-xs font-mono font-bold text-gold">
+                      <div className="absolute inset-0 flex items-center justify-center text-[10px] md:text-xs font-mono font-bold text-gold">
                         {val}%
                       </div>
                     </div>
-                    <span className="text-[8px] font-mono uppercase text-white/30 text-center tracking-widest">
+                    <span className="text-[7px] md:text-[8px] font-mono uppercase text-white/30 text-center tracking-widest">
                       {label}
                     </span>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Pillars list — flex-1 so it fills remaining height, justify-between for even spread */}
+              {/* Pillars list */}
               <div className="flex-1 flex flex-col justify-between pt-6 border-t border-white/8">
                 {[
                   { label: "Primeiro Pilar", title: "Desenvolvimento Imobiliário", id: "imobiliario" },
@@ -583,7 +624,7 @@ export default function App() {
                   <a key={i} href={`#${item.id}`} className="flex items-center justify-between group cursor-pointer py-2">
                     <div>
                       <div className="text-[8px] font-mono text-gold/70 uppercase mb-1 tracking-widest">{item.label}</div>
-                      <div className="text-base font-serif group-hover:translate-x-2 transition-transform duration-300">{item.title}</div>
+                      <div className="text-sm md:text-base font-serif group-hover:translate-x-2 transition-transform duration-300">{item.title}</div>
                     </div>
                     <ArrowRight size={14} className="text-white/15 group-hover:text-gold transition-colors flex-shrink-0 ml-4" />
                   </a>
@@ -591,12 +632,12 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right — bar chart, transparent background, same height as left column */}
+            {/* Right — bar chart */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex-1"
+              className="flex-1 min-h-[280px] md:min-h-0"
             >
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={strategyData} margin={{ top: 8, right: 0, left: -16, bottom: 0 }}>
@@ -636,13 +677,12 @@ export default function App() {
       </section>
 
       {/* Real Estate Detail Section */}
-      <section id="imobiliario" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-        <div className="flex gap-14 items-stretch">
+      <section id="imobiliario" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
-          {/* Left block — flex col: title at top, paragraph + columns pulled to base by mt-auto */}
+          {/* Left block */}
           <div className="flex-1 flex flex-col min-w-0">
 
-            {/* TOP — label + title, flush with image top */}
             <div>
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
@@ -653,8 +693,7 @@ export default function App() {
               </h2>
             </div>
 
-            {/* MIDDLE — mt-auto floats this block toward the base; tight leading for density */}
-            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+            <div className="mt-6 md:mt-auto mb-6 text-dark/70 text-sm font-sans">
               <p className="font-bold text-dark mb-2 leading-snug">
                 Investimento e principal base de crescimento da holding.
               </p>
@@ -663,8 +702,7 @@ export default function App() {
               </p>
             </div>
 
-            {/* BOTTOM — Estruturação + Objetivo, base flush with image bottom */}
-            <div className="grid grid-cols-2 gap-8 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
               <div>
                 <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Estruturação</h4>
                 <ul className="space-y-[7px] text-xs text-dark/70 font-sans">
@@ -685,39 +723,42 @@ export default function App() {
 
           </div>
 
-          {/* RIGHT — square image, reduced size; anchors the row height */}
-          <div className="flex-shrink-0 w-[38%]" style={{ aspectRatio: '1/1' }}>
-            <TechImage
-              src={devimob}
-              alt="Luxury Real Estate"
-              className="w-full h-full shadow-2xl"
-            />
+          {/* Right — image */}
+          <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[38%]" style={{ aspectRatio: undefined }}>
+            <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src={devimob}
+                alt="Luxury Real Estate"
+                className="w-full h-full shadow-2xl"
+              />
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* Hospitality Detail Section */}
-      <section className="bg-dark text-white py-32 relative overflow-hidden" id="hotelaria">
+      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="hotelaria">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-          <div className="flex flex-row-reverse gap-14 items-stretch">
+          <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-14 items-start md:items-stretch">
 
-            {/* LEFT (visual) — square image anchors row height */}
-            <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
-              <TechImage
-                src={hotelaria}
-                alt="Luxury Hospitality"
-                className="w-full h-full shadow-2xl"
-              />
+            {/* Image */}
+            <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[42%]">
+              <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+                <TechImage
+                  src={hotelaria}
+                  alt="Luxury Hospitality"
+                  className="w-full h-full shadow-2xl"
+                />
+              </div>
             </div>
 
-            {/* RIGHT (visual) — text block, title at top, columns at base */}
+            {/* Text block */}
             <div className="flex-1 flex flex-col min-w-0">
 
-              {/* TOP — label + title flush with image top */}
               <div>
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
@@ -730,21 +771,19 @@ export default function App() {
                 </h2>
               </div>
 
-              {/* MIDDLE — mt-auto pulls this block toward the base */}
-              <div className="mt-auto mb-6 text-white/60 text-sm font-sans">
+              <div className="mt-6 md:mt-auto mb-6 text-white/60 text-sm font-sans">
                 <p className="font-bold text-white mb-2 leading-snug">
                   Investimento e principal base de crescimento da holding.
                 </p>
-<p className="leading-[1.7] mb-3 text-justify">
-  A hotelaria será o segundo grande movimento estratégico do grupo, utilizando imóveis próprios ou adquiridos pela holding para criar operações com geração de caixa recorrente, valorização patrimonial e fortalecimento da marca.
-</p>
-<p className="leading-[1.7] text-justify">
-  A estratégia é selecionar localizações com alto potencial turístico, natureza preservada e procura crescente por experiências exclusivas, transformando esses ativos em empreendimentos de hospitalidade com posicionamento premium.
-</p>
+                <p className="leading-[1.7] mb-3 text-justify">
+                  A hotelaria será o segundo grande movimento estratégico do grupo, utilizando imóveis próprios ou adquiridos pela holding para criar operações com geração de caixa recorrente, valorização patrimonial e fortalecimento da marca.
+                </p>
+                <p className="leading-[1.7] text-justify">
+                  A estratégia é selecionar localizações com alto potencial turístico, natureza preservada e procura crescente por experiências exclusivas, transformando esses ativos em empreendimentos de hospitalidade com posicionamento premium.
+                </p>
               </div>
 
-              {/* BOTTOM — Estratégia + Possibilidades, base flush with image bottom */}
-              <div className="grid grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
                 <div>
                   <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Estratégia</h4>
                   <ul className="space-y-[7px] text-[10px] text-white/60 font-sans">
@@ -770,13 +809,12 @@ export default function App() {
       </section>
 
       {/* Technology Detail Section */}
-      <section id="tecnologia" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-        <div className="flex gap-14 items-stretch">
+      <section id="tecnologia" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
-          {/* LEFT — text block: title at top, columns flush at base */}
+          {/* LEFT — text block */}
           <div className="flex-1 flex flex-col min-w-0">
 
-            {/* TOP — label + title flush with image top */}
             <div>
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
@@ -786,12 +824,10 @@ export default function App() {
                 TECNOLOGIA ,<br />
                 NEGÓCIOS DIGITAIS,<br />
                 INOVAÇÃO <br />
-               
               </h2>
             </div>
 
-            {/* MIDDLE — mt-auto pulls this toward the base */}
-            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+            <div className="mt-6 md:mt-auto mb-6 text-dark/70 text-sm font-sans">
               <p className="font-bold text-dark mb-2 leading-snug">
                 Tecnologia e negócios digitais como forma de criar escalabilidade.
               </p>
@@ -800,8 +836,7 @@ export default function App() {
               </p>
             </div>
 
-            {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
-            <div className="grid grid-cols-2 gap-8 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
               <div>
                 <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
                 <ul className="space-y-[7px] text-xs text-dark/70 font-sans">
@@ -823,39 +858,42 @@ export default function App() {
 
           </div>
 
-          {/* RIGHT — square image anchors row height */}
-          <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
-            <TechImage
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
-              alt="Technology and Innovation"
-              className="w-full h-full shadow-2xl"
-            />
+          {/* RIGHT — image */}
+          <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[42%]">
+            <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070"
+                alt="Technology and Innovation"
+                className="w-full h-full shadow-2xl"
+              />
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* Fashion Detail Section */}
-      <section className="bg-dark text-white py-32 relative overflow-hidden" id="moda">
+      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="moda">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-          <div className="flex flex-row-reverse gap-14 items-stretch">
+          <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-14 items-start md:items-stretch">
 
-            {/* LEFT (visual) — square image anchors row height */}
-            <div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
-              <TechImage
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2070"
-                alt="Fashion and Lifestyle"
-                className="w-full h-full shadow-2xl"
-              />
+            {/* Image */}
+            <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[42%]">
+              <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+                <TechImage
+                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2070"
+                  alt="Fashion and Lifestyle"
+                  className="w-full h-full shadow-2xl"
+                />
+              </div>
             </div>
 
-            {/* RIGHT (visual) — text block: title at top, columns at base */}
+            {/* Text block */}
             <div className="flex-1 flex flex-col min-w-0">
 
-              {/* TOP — label + title flush with image top */}
               <div>
                 <div className="flex items-center gap-4 mb-3">
                   <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
@@ -864,19 +902,16 @@ export default function App() {
                 <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
                   M O D A,    M A R C A,<br />
                  L I F E S T Y L E <br />
-                  
                 </h2>
               </div>
 
-              {/* MIDDLE — mt-auto pulls this block toward the base */}
-              <div className="mt-auto mb-6 text-white/60 text-sm font-sans">
+              <div className="mt-6 md:mt-auto mb-6 text-white/60 text-sm font-sans">
                 <p className="font-bold text-white leading-snug">
                   Desenvolvimento de marca própria focada em posicionamento premium e lifestyle.
                 </p>
               </div>
 
-              {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
-              <div className="grid grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
                 <div>
                   <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
                   <ul className="space-y-[7px] text-[10px] text-white/60 font-sans">
@@ -901,37 +936,33 @@ export default function App() {
       </section>
 
       {/* Agribusiness Detail Section */}
-      <section id="agronegocio" className="border-t border-dark/5 py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-        <div className="flex gap-14 items-stretch">
+      <section id="agronegocio" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
-          {/* LEFT — text block: title at top, columns at base */}
+          {/* LEFT — text block */}
           <div className="flex-1 flex flex-col min-w-0">
 
-            {/* TOP — label + title flush with image top */}
             <div>
               <div className="flex items-center gap-4 mb-3">
                 <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
                 <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
               </div>
-<h2 
-  className="font-serif font-bold tracking-tighter uppercase leading-[1.05] " 
-  style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}
->
-  A G R O N E G Ó C I O <br />
-
-  A T I V O S &nbsp;&nbsp; R U R A I S
-</h2>
+              <h2
+                className="font-serif font-bold tracking-tighter uppercase leading-[1.05]"
+                style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}
+              >
+                A G R O N E G Ó C I O <br />
+                A T I V O S &nbsp;&nbsp; R U R A I S
+              </h2>
             </div>
 
-            {/* MIDDLE — mt-auto pulls this block toward the base */}
-            <div className="mt-auto mb-6 text-dark/70 text-sm font-sans">
+            <div className="mt-6 md:mt-auto mb-6 text-dark/70 text-sm font-sans">
               <p className="font-bold text-dark leading-snug">
                 Investimentos em ativos reais como forma de proteção patrimonial e expansão futura.
               </p>
             </div>
 
-            {/* BOTTOM — Possibilidades + Objetivo, base flush with image bottom */}
-            <div className="grid grid-cols-2 gap-8 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
               <div>
                 <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">Possibilidades</h4>
                 <ul className="space-y-[11px] text-xs text-dark/70 font-sans">
@@ -951,36 +982,38 @@ export default function App() {
 
           </div>
 
-          {/* RIGHT — square image anchors row height */}
-<div className="flex-shrink-0 w-[42%]" style={{ aspectRatio: '1/1' }}>
-  <TechImage
-    src={agronegocio} // Substituição da URL pela variável importada
-    alt="Agribusiness"
-    className="w-full h-full shadow-2xl"
-  />
-</div>
+          {/* RIGHT — image */}
+          <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[42%]">
+            <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src={agronegocio}
+                alt="Agribusiness"
+                className="w-full h-full shadow-2xl"
+              />
+            </div>
+          </div>
 
         </div>
       </section>
 
       <ChatSection />
 
-      <footer className="bg-dark text-white py-32 relative overflow-hidden">
+      <footer className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
         <Section className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="mb-12 md:mb-20"
           >
-            <div className="flex justify-center mb-12">
-              <img src={logoLez} alt="LÉZ.NK Logo" className="h-24 w-auto object-contain" />
+            <div className="flex justify-center mb-8 md:mb-12">
+              <img src={logoLez} alt="LÉZ.NK Logo" className="h-16 md:h-24 w-auto object-contain" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tighter">LÉZ.NK <span className="gold-gradient">CAPITAL</span></h2>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold mb-6 tracking-tighter">LÉZ.NK <span className="gold-gradient">CAPITAL</span></h2>
             <p className="text-white/40 font-mono uppercase tracking-[0.5em] text-[10px]">grupolez.nkcapital.com.br</p>
           </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-16 w-full pt-20 border-t border-white/5 text-[10px] font-mono uppercase tracking-[0.2em] text-white/40">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full pt-10 md:pt-20 border-t border-white/5 text-[10px] font-mono uppercase tracking-[0.2em] text-white/40">
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">Escritório</p>
               <p className="hover:text-white transition-colors cursor-pointer">São Paulo, Brasil</p>
