@@ -29,6 +29,7 @@ import agronegocio from "./agronegocio.jpeg";
 import devimob from "./desenvolvimento imobiliario.jpeg";
 import hotelaria from "./hotelaria.jpeg";
 import ChatWidget, { ChatSection } from "./ChatWidget";
+import Portfolios from "./Portfolios";
 import {
   BarChart,
   Bar,
@@ -48,7 +49,7 @@ const Section = ({ children, className = "", id }: { children: React.ReactNode, 
   </section>
 );
 
-const TechImage = ({ src, alt, className = "" }: { src: string, alt: string, className?: string }) => {
+const TechImage = ({ src, alt, className = "", imgClassName = "" }: { src: string, alt: string, className?: string, imgClassName?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -63,7 +64,7 @@ const TechImage = ({ src, alt, className = "" }: { src: string, alt: string, cla
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${imgClassName}`}
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gold/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -136,6 +137,7 @@ export default function App() {
           <a href="#holding" className="hover:text-gold transition-colors">Holding</a>
           <a href="#estrategia" className="hover:text-gold transition-colors">Estratégia</a>
           <a href="#objetivos" className="hover:text-gold transition-colors">Objetivos</a>
+          <a href="#portfolio" className="hover:text-gold transition-colors">Portfólio</a>
           <a
             href="#ia"
             className="flex items-center gap-2 bg-gold text-dark px-4 py-2 hover:bg-white transition-all font-bold tracking-widest"
@@ -170,6 +172,7 @@ export default function App() {
               { href: "#holding", label: "Holding" },
               { href: "#estrategia", label: "Estratégia" },
               { href: "#objetivos", label: "Objetivos" },
+              { href: "#portfolio", label: "Portfólio" },
             ].map(({ href, label }) => (
               <a
                 key={href}
@@ -251,6 +254,7 @@ export default function App() {
               src={fotoLia}
               alt="Lia Eden Z'anelato"
               className="w-full h-full shadow-2xl"
+              imgClassName="object-top"
             />
             <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold/20 -z-10" />
             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
@@ -339,11 +343,11 @@ export default function App() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-6 glass-card border border-white/10">
                   <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">Expansão</div>
-                  <div className="text-2xl font-bold">Global</div>
+                  <div className="text-base md:text-2xl font-bold">Global</div>
                 </div>
                 <div className="p-6 glass-card border border-white/10">
                   <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">Classe de Ativo</div>
-                  <div className="text-2xl font-bold">Multissetorial</div>
+                  <div className="text-base md:text-2xl font-bold break-words">Multissetorial</div>
                 </div>
               </div>
             </motion.div>
@@ -995,6 +999,8 @@ export default function App() {
 
         </div>
       </section>
+
+      <Portfolios />
 
       <ChatSection />
 
