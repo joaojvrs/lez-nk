@@ -260,9 +260,7 @@ export default function App() {
               LÉZ.NK <br /> <span className="gold-gradient">CAPITAL</span>
             </h1>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              <p className="text-white/40 text-[10px] font-mono uppercase tracking-[0.3em]">
-                presidentegrupolez@gmail.com
-              </p>
+
             </div>
           </motion.div>
         </div>
@@ -927,13 +925,13 @@ export default function App() {
                 <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
                 <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
               </div>
-              <h2
-                className="font-serif font-bold tracking-tighter uppercase leading-[1.05]"
-                style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}
-              >
-                {t.agribusiness.titleL1}<br />
-                {t.agribusiness.titleL2}
-              </h2>
+<h2
+  className="font-serif font-bold tracking-tighter uppercase leading-[1.05]"
+  style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.5rem)' }}
+>
+  {t.agribusiness.titleL1}<br />
+  {t.agribusiness.titleL2}
+</h2>
             </div>
 
             <div className="mt-6 md:mt-auto mb-6 text-dark/70 text-sm font-sans">
