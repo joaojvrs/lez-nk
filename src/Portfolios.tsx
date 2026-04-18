@@ -234,40 +234,30 @@ export default function Portfolios() {
             <p className="text-[9px] font-mono text-white/25 uppercase tracking-[0.35em] mb-6">
               {p.s02.national}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <ProjectCard dark>
-                <LocationBadge text="Goiás – GO" dark />
-                <h4 className="font-serif font-bold text-xl mb-3">Casarão dos Pinheiros</h4>
-                <span className="inline-block text-[8px] font-mono uppercase tracking-widest px-2 py-1 border border-gold/30 text-gold/60">
-                  {p.s02.operating}
-                </span>
-              </ProjectCard>
-
-              <ProjectCard dark delay={0.1}>
-                <LocationBadge text="Fortaleza – Ceará – CE" dark />
-                <h4 className="font-serif font-bold text-xl mb-2">Marina Park Hotel</h4>
-                <p className="text-white/45 text-xs font-sans mb-5 leading-relaxed">
-                  {p.s02.hotelDesc}
+            <ProjectCard dark>
+              <LocationBadge text="Fortaleza – Ceará – CE" dark />
+              <h4 className="font-serif font-bold text-xl mb-2">Marina Park Hotel</h4>
+              <p className="text-white/45 text-xs font-sans mb-5 leading-relaxed">
+                {p.s02.hotelDesc}
+              </p>
+              <div className="border-t border-white/8 pt-4 space-y-2">
+                <p className="text-[9px] font-mono text-gold/60 uppercase tracking-widest mb-3">
+                  {p.s02.devTitle}
                 </p>
-                <div className="border-t border-white/8 pt-4 space-y-2">
-                  <p className="text-[9px] font-mono text-gold/60 uppercase tracking-widest mb-3">
-                    {p.s02.devTitle}
+                <div className="flex items-start gap-2">
+                  <div className="mt-1.5 w-1 h-1 bg-gold flex-shrink-0" />
+                  <p className="text-xs font-sans text-white/60">
+                    Apex Residences Patrícia Lamborghini
                   </p>
-                  <div className="flex items-start gap-2">
-                    <div className="mt-1.5 w-1 h-1 bg-gold flex-shrink-0" />
-                    <p className="text-xs font-sans text-white/60">
-                      Apex Residences Patrícia Lamborghini
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="mt-1.5 w-1 h-1 bg-gold flex-shrink-0" />
-                    <p className="text-xs font-sans text-white/60">
-                      Ímpar Resort by Liä Éden Z'anelato
-                    </p>
-                  </div>
                 </div>
-              </ProjectCard>
-            </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1.5 w-1 h-1 bg-gold flex-shrink-0" />
+                  <p className="text-xs font-sans text-white/60">
+                    Ímpar Resort by Liä Éden Z'anelato
+                  </p>
+                </div>
+              </div>
+            </ProjectCard>
           </div>
 
           {/* Internacionais */}
