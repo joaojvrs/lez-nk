@@ -51,7 +51,7 @@ const Section = ({ children, className = "", id }: { children: React.ReactNode, 
   </section>
 );
 
-const TechImage = ({ src, alt, className = "", imgClassName = "" }: { src: string, alt: string, className?: string, imgClassName?: string }) => {
+const TechImage = ({ src, alt, className = "", imgClassName = "", imgStyle }: { src: string, alt: string, className?: string, imgClassName?: string, imgStyle?: React.CSSProperties }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -67,6 +67,7 @@ const TechImage = ({ src, alt, className = "", imgClassName = "" }: { src: strin
           src={src}
           alt={alt}
           className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${imgClassName}`}
+          style={imgStyle}
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gold/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -286,6 +287,7 @@ export default function App() {
               alt="Lia Eden Z'anelato"
               className="w-full h-full shadow-2xl"
               imgClassName="object-top"
+              imgStyle={{ transform: 'scale(1.2)', transformOrigin: 'top center' }}
             />
             <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold/20 -z-10" />
             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
@@ -995,17 +997,17 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full pt-10 md:pt-20 border-t border-white/5 text-[10px] font-mono uppercase tracking-[0.2em] text-white/40">
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.office}</p>
-              <p className="hover:text-white transition-colors cursor-pointer">São Paulo, Brasil</p>
-              <p className="hover:text-white transition-colors cursor-pointer">Av. Faria Lima, 4500</p>
+              <p className="hover:text-white transition-colors cursor-pointer">Rua S2, nº 913, Sala 701</p>
+              <p className="hover:text-white transition-colors cursor-pointer">Setor Bela Vista, Goiânia/GO</p>
             </div>
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.contact}</p>
-              <p className="hover:text-white transition-colors cursor-pointer">invest@leznkcapital.com</p>
-              <p className="hover:text-white transition-colors cursor-pointer">+55 11 9999-9999</p>
+              <p className="hover:text-white transition-colors cursor-pointer">Presidente@leznkcapital.com.br</p>
             </div>
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.legal}</p>
               <p>© 2026 LÉZ.NK Capital LTDA</p>
+              <p>CNPJ nº 65.844.702/0001-05</p>
               <p>{t.footer.rights}</p>
             </div>
           </div>
