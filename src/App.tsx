@@ -287,7 +287,7 @@ export default function App() {
               alt="Lia Eden Z'anelato"
               className="w-full h-full shadow-2xl"
               imgClassName="object-top"
-              imgStyle={{ transform: 'scale(1.2)', transformOrigin: 'top center' }}
+              imgStyle={{ transform: 'scale(1.05)', transformOrigin: 'top center' }}
             />
             <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold/20 -z-10" />
             <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
@@ -972,6 +972,134 @@ export default function App() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* VITAT Premium Section */}
+      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="vitat">
+        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+          <div className="tech-grid w-full h-full" />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
+
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-14 md:mb-20"
+          >
+            <div className="flex items-center gap-4 mb-5">
+              <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+              <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold">Portfólio Estratégico</span>
+            </div>
+            <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05] text-3xl md:text-5xl lg:text-6xl mb-4">
+              VITAT <span className="gold-gradient">EMPREENDIMENTOS</span>
+            </h2>
+            <h3 className="font-serif font-bold tracking-tighter uppercase leading-[1.05] text-xl md:text-3xl text-white/60 mb-8">
+              E PARTICIPAÇÕES
+            </h3>
+            <div className="w-full h-[1px] bg-gold/20" />
+          </motion.div>
+
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-14 md:mb-20">
+            {[
+              { value: "21", label: "Ativos Imobiliários", suffix: "" },
+              { value: "20M", label: "Valor do Ativo", suffix: "R$" },
+              { value: "600", label: "Residências de Alto Padrão", suffix: "" },
+              { value: "3.7B", label: "GVG Projeto Residencial", suffix: "R$" },
+            ].map(({ value, label, suffix }, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.7 }}
+                className="p-6 md:p-8 border border-white/8 bg-white/[0.02] relative group hover:border-gold/30 transition-colors"
+              >
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gold/0 group-hover:bg-gold/40 transition-colors" />
+                {suffix && (
+                  <div className="text-gold/60 font-mono text-[10px] uppercase tracking-widest mb-1">{suffix}</div>
+                )}
+                <div className="text-3xl md:text-4xl font-serif font-bold text-white mb-2 tracking-tight">
+                  {value}
+                </div>
+                <div className="text-[9px] md:text-[10px] font-mono text-white/35 uppercase tracking-widest leading-relaxed">
+                  {label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Main content */}
+          <div className="flex flex-col md:flex-row gap-10 md:gap-20 items-start">
+
+            {/* Left — description */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex-1"
+            >
+              <p className="text-white/70 font-sans text-sm leading-[1.9] text-justify mb-6">
+                Proprietária de <span className="text-white font-bold">21 ativos imobiliários</span>, a VITAT Empreendimentos e Participações consolida-se como um dos mais expressivos portfólios do setor no país, com ativos avaliados em <span className="text-gold font-bold">R$ 20 milhões</span>.
+              </p>
+              <p className="text-white/70 font-sans text-sm leading-[1.9] text-justify">
+                Seu carro-chefe é um <span className="text-white font-bold">projeto residencial de alto padrão em expansão</span>, composto por <span className="text-gold font-bold">600 residências</span> seladas com o brasão exclusivo <span className="text-white font-bold">Patrizia Lamborghini</span>, atingindo um Giro de Vendas Garantido — GVG — de <span className="text-gold font-bold">R$ 3,7 bilhões</span>.
+              </p>
+
+              <div className="mt-10 flex flex-wrap gap-3">
+                {["Alto Padrão", "Patrizia Lamborghini", "Expansão Residencial", "GVG R$ 3.7B"].map((tag, i) => (
+                  <span
+                    key={i}
+                    className="px-4 py-2 border border-gold/30 text-gold/70 text-[9px] uppercase tracking-widest font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right — highlight card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex-shrink-0 w-full md:w-[42%]"
+            >
+              <div className="border border-gold/25 p-8 md:p-10 relative bg-white/[0.015]">
+                <div className="absolute top-0 left-0 w-16 h-[2px] bg-gold" />
+                <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-gold" />
+                <div className="text-gold font-mono text-[9px] uppercase tracking-[0.3em] mb-6 font-bold">Projeto Premium</div>
+                <div className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 tracking-tight leading-tight uppercase">
+                  Patrizia<br />Lamborghini
+                </div>
+                <div className="w-12 h-[1px] bg-gold/40 my-6" />
+                <ul className="space-y-4 text-[10px] font-mono text-white/50 uppercase tracking-widest">
+                  <li className="flex items-center gap-3">
+                    <div className="w-1 h-1 bg-gold flex-shrink-0" />
+                    600 residências de alto padrão
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1 h-1 bg-gold flex-shrink-0" />
+                    GVG de R$ 3,7 bilhões
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1 h-1 bg-gold flex-shrink-0" />
+                    Brasão exclusivo certificado
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1 h-1 bg-gold flex-shrink-0" />
+                    Projeto em expansão
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
