@@ -563,8 +563,8 @@ export default function App() {
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
                   { val: 70, label: t.strategy.donutLabels[0] },
-                  { val: 25, label: t.strategy.donutLabels[1] },
-                  { val: 15, label: t.strategy.donutLabels[2] },
+                  { val: 20, label: t.strategy.donutLabels[1] },
+                  { val: 10, label: t.strategy.donutLabels[2] },
                 ].map(({ val, label }, i) => (
                   <motion.div
                     key={i}
