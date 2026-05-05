@@ -1006,10 +1006,10 @@ export default function App() {
           {/* Stats grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-14 md:mb-20">
             {[
-              { value: "21", label: "Ativos Imobiliários", suffix: "" },
-              { value: "20M", label: "Valor do Ativo", suffix: "R$" },
-              { value: "600", label: "Residências de Alto Padrão", suffix: "" },
-              { value: "3.7B", label: "GVG Projeto Residencial", suffix: "R$" },
+              { value: "120", label: "Apartamentos", suffix: "" },
+              { value: "300", label: "Casas", suffix: "" },
+              { value: "420", label: "Total de Unidades", suffix: "" },
+              { value: "3,78 Bi", label: "VGV Projeto Residencial", suffix: "R$" },
             ].map(({ value, label, suffix }, i) => (
               <motion.div
                 key={i}
@@ -1047,11 +1047,11 @@ export default function App() {
                 Proprietária de <span className="text-white font-bold">21 ativos imobiliários</span>, a VITAT Empreendimentos e Participações consolida-se como um dos mais expressivos portfólios do setor no país, com ativos avaliados em <span className="text-gold font-bold">R$ 20 milhões</span>.
               </p>
               <p className="text-white/70 font-sans text-sm leading-[1.9] text-justify">
-                Seu carro-chefe é um <span className="text-white font-bold">projeto residencial de alto padrão em expansão</span>, composto por <span className="text-gold font-bold">600 residências</span> seladas com o brasão exclusivo <span className="text-white font-bold">Patrizia Lamborghini</span>, atingindo um Giro de Vendas Garantido — GVG — de <span className="text-gold font-bold">R$ 3,7 bilhões</span>.
+                Seu carro-chefe é um <span className="text-white font-bold">projeto residencial de alto padrão em expansão</span>, composto por <span className="text-gold font-bold">120 apartamentos</span> e <span className="text-gold font-bold">300 casas</span> — totalizando <span className="text-white font-bold">420 unidades</span> — seladas com o brasão exclusivo <span className="text-white font-bold">Patrizia Lamborghini</span>, atingindo um VGV de <span className="text-gold font-bold">R$ 3,78 bilhões</span>.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-3">
-                {["Alto Padrão", "Patrizia Lamborghini", "Expansão Residencial", "GVG R$ 3.7B"].map((tag, i) => (
+                {["120 Apartamentos", "300 Casas", "420 Unidades", "VGV R$ 3,78 Bi"].map((tag, i) => (
                   <span
                     key={i}
                     className="px-4 py-2 border border-gold/30 text-gold/70 text-[9px] uppercase tracking-widest font-mono"
@@ -1081,11 +1081,15 @@ export default function App() {
                 <ul className="space-y-4 text-[10px] font-mono text-white/50 uppercase tracking-widest">
                   <li className="flex items-center gap-3">
                     <div className="w-1 h-1 bg-gold flex-shrink-0" />
-                    600 residências de alto padrão
+                    120 apartamentos + 300 casas
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1 h-1 bg-gold flex-shrink-0" />
-                    GVG de R$ 3,7 bilhões
+                    420 unidades — total do projeto
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-1 h-1 bg-gold flex-shrink-0" />
+                    VGV de R$ 3,78 bilhões
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="w-1 h-1 bg-gold flex-shrink-0" />
