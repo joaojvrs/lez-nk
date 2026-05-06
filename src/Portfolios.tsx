@@ -370,13 +370,13 @@ export default function Portfolios() {
 
             <ProjectCard dark delay={0.1}>
               <LocationBadge text="Atibaia – São Paulo – SP" dark />
-              <h4 className="font-serif font-bold text-xl mb-4">Loteamento Vitat</h4>
+              <h4 className="font-serif font-bold text-xl mb-4">Projeto P. Lamborghini</h4>
               <div className="flex items-center gap-3">
                 <div className="px-4 py-3 border border-gold/20 bg-white/[0.03]">
                   <p className="text-[9px] font-mono text-gold/60 uppercase tracking-widest mb-1">
                     {p.s04.lotsLabel}
                   </p>
-                  <p className="text-2xl font-bold font-mono tracking-tight">700</p>
+                  <p className="text-2xl font-bold font-mono tracking-tight">420</p>
                 </div>
               </div>
             </ProjectCard>

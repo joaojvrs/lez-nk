@@ -1044,7 +1044,7 @@ export default function App() {
               className="flex-1"
             >
               <p className="text-white/70 font-sans text-sm leading-[1.9] text-justify mb-6">
-                Proprietária de <span className="text-white font-bold">21 ativos imobiliários</span>, a VITAT Empreendimentos e Participações consolida-se como um dos mais expressivos portfólios do setor no país, com ativos avaliados em <span className="text-gold font-bold">R$ 20 milhões</span>.
+                Proprietária de <span className="text-white font-bold">35 ativos imobiliários</span>, a VITAT Empreendimentos e Participações consolida-se como um dos mais expressivos portfólios do setor no país, com ativos avaliados em <span className="text-gold font-bold">R$ 20 milhões</span>.
               </p>
               <p className="text-white/70 font-sans text-sm leading-[1.9] text-justify">
                 Seu carro-chefe é um <span className="text-white font-bold">projeto residencial de alto padrão em expansão</span>, composto por <span className="text-gold font-bold">120 apartamentos</span> e <span className="text-gold font-bold">300 casas</span> — totalizando <span className="text-white font-bold">420 unidades</span> — seladas com o brasão exclusivo <span className="text-white font-bold">Patrizia Lamborghini</span>, atingindo um VGV de <span className="text-gold font-bold">R$ 3,78 bilhões</span>.
