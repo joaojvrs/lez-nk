@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
 import logoLez from "./logo-lez.png";
-import fotoLia from "./foto-lia.jpeg";
+import fotoLia from "./foto-lia.png";
 import agronegocio from "./agronegocio.jpeg";
 import devimob from "./desenvolvimento imobiliario.jpeg";
 import hotelaria from "./hotelaria.jpeg";
