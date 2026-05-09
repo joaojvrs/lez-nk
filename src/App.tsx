@@ -44,6 +44,8 @@ import {
   Pie,
   Cell
 } from 'recharts';
+import videoBg from "./videomp_.mp4";
+
 
 const Section = ({ children, className = "", id }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={`py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative ${className}`}>
@@ -239,12 +241,14 @@ export default function App() {
           style={{ opacity: heroOpacity, scale: heroScale }}
           className="absolute inset-0 z-0"
         >
-          <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
-            alt="Modern Architecture"
-            className="w-full h-full object-cover opacity-40 grayscale"
-            referrerPolicy="no-referrer"
-          />
+<video
+  src="/src/videomp_.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full h-full object-cover opacity-40 grayscale"
+/>
           <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-transparent to-dark" />
         </motion.div>
 
