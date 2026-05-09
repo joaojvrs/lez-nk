@@ -242,7 +242,7 @@ export default function App() {
           className="absolute inset-0 z-0"
         >
 <video
-  src="/src/videomp_.mp4"
+  src={videoBg}
   autoPlay
   muted
   loop
