@@ -1138,7 +1138,9 @@ export default function App() {
             </div>
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.contact}</p>
-              <p className="hover:text-white transition-colors cursor-pointer">Presidente@leznkcapital.com.br</p>
+              <p className="hover:text-white transition-colors cursor-pointer">ceo@leznkcapital.com.br</p>
+              <p className="hover:text-white transition-colors cursor-pointer">marketing@leznkcapital.com.br</p>
+              <p className="hover:text-white transition-colors cursor-pointer">juridico@leznkcapital.com.br</p>
             </div>
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.legal}</p>
