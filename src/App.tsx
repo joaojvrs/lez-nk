@@ -3,6 +3,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// ── Feature flags — mude para true para reativar no site ─────────────────
+const SHOW_STRATEGY = false;
+const SHOW_REAL_ESTATE = false;
+const SHOW_HOSPITALITY = false;
+const SHOW_TECHNOLOGY = false;
+const SHOW_AGRIBUSINESS = false;
+const SHOW_VITAT = false;
+// ─────────────────────────────────────────────────────────────────────────
+
 import { motion, useScroll, useTransform, useSpring, useInView } from "motion/react";
 import {
   Building2,
@@ -119,8 +128,6 @@ export default function App() {
 
   const strategyData = [
     { name: t.strategy.chartLabels[0], value: 6, color: '#D4AF37' },
-    { name: t.strategy.chartLabels[1], value: 14, color: '#6B6B6B' },
-    { name: t.strategy.chartLabels[2], value: 18, color: '#C0C0C0' },
   ];
 
   return (
@@ -528,7 +535,7 @@ export default function App() {
       </Section>
 
       {/* Strategy Charts Section */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="estrategia">
+      {SHOW_STRATEGY && <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="estrategia">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
@@ -566,9 +573,7 @@ export default function App() {
               {/* Donut charts */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
-                  { val: 70, label: t.strategy.donutLabels[0] },
-                  { val: 20, label: t.strategy.donutLabels[1] },
-                  { val: 10, label: t.strategy.donutLabels[2] },
+                  { val: 100, label: t.strategy.donutLabels[0] },
                 ].map(({ val, label }, i) => (
                   <motion.div
                     key={i}
@@ -666,10 +671,10 @@ export default function App() {
 
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Real Estate Detail Section */}
-      <section id="imobiliario" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      {SHOW_REAL_ESTATE && <section id="imobiliario" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
           {/* Left block */}
@@ -725,10 +730,10 @@ export default function App() {
           </div>
 
         </div>
-      </section>
+      </section>}
 
       {/* Hospitality Detail Section */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="hotelaria">
+      {SHOW_HOSPITALITY && <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="hotelaria">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
@@ -795,10 +800,10 @@ export default function App() {
             </div>
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Technology Detail Section */}
-      <section id="tecnologia" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      {SHOW_TECHNOLOGY && <section id="tecnologia" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
           {/* LEFT — text block */}
@@ -856,7 +861,7 @@ export default function App() {
           </div>
 
         </div>
-      </section>
+      </section>}
 
       {/* Fashion Detail Section */}
       <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="moda">
@@ -920,7 +925,7 @@ export default function App() {
       </section>
 
       {/* Agribusiness Detail Section */}
-      <section id="agronegocio" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+      {SHOW_AGRIBUSINESS && <section id="agronegocio" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
 
           {/* LEFT — text block */}
@@ -977,10 +982,10 @@ export default function App() {
           </div>
 
         </div>
-      </section>
+      </section>}
 
       {/* VITAT Premium Section */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="vitat">
+      {SHOW_VITAT && <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="vitat">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
@@ -1109,7 +1114,7 @@ export default function App() {
 
           </div>
         </div>
-      </section>
+      </section>}
 
       <Portfolios />
 

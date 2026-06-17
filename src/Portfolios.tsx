@@ -1,3 +1,10 @@
+// ── Feature flags — mude para true para reativar o setor no site ──────────
+const SHOW_TURISMO = false;
+const SHOW_IMOBILIARIO = false;
+const SHOW_AGRO = false;
+const SHOW_FINTECH = false;
+// ──────────────────────────────────────────────────────────────────────────
+
 import { motion } from "motion/react";
 import {
   MapPin,
@@ -125,12 +132,7 @@ export default function Portfolios() {
                 {p.overview.visionP}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { label: p.overview.iconLabels[0], Icon: Palmtree },
-                  { label: p.overview.iconLabels[1], Icon: ShoppingBag },
-                  { label: p.overview.iconLabels[2], Icon: Building2 },
-                  { label: p.overview.iconLabels[3], Icon: CreditCard },
-                ].map(({ label, Icon }, i) => (
+                {p.overview.iconLabels.map((label, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
@@ -139,7 +141,7 @@ export default function Portfolios() {
                     transition={{ delay: i * 0.1 }}
                     className="p-5 border border-white/8 bg-white/[0.02] flex flex-col gap-3"
                   >
-                    <Icon size={16} className="text-gold" />
+                    <ShoppingBag size={16} className="text-gold" />
                     <span className="text-[11px] font-sans text-white/55 leading-snug">{label}</span>
                   </motion.div>
                 ))}
@@ -207,7 +209,7 @@ export default function Portfolios() {
       </section>
 
       {/* ── SECTOR 2: TURISMO & HOTELARIA — dark ──────────────────────────── */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
+      {SHOW_TURISMO && (<section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
@@ -291,10 +293,10 @@ export default function Portfolios() {
             </div>
           </div>
         </div>
-      </section>
+      </section>)}
 
       {/* ── SECTOR 3: AGRO — light ─────────────────────────────────────────── */}
-      <section className="py-16 md:py-32 border-t border-dark/5">
+      {SHOW_AGRO && (<section className="py-16 md:py-32 border-t border-dark/5">
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,10 +336,10 @@ export default function Portfolios() {
             </ProjectCard>
           </div>
         </div>
-      </section>
+      </section>)}
 
       {/* ── SECTOR 4: IMOBILIÁRIO — dark ───────────────────────────────────── */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
+      {SHOW_IMOBILIARIO && (<section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <div className="tech-grid w-full h-full" />
         </div>
@@ -382,10 +384,10 @@ export default function Portfolios() {
             </ProjectCard>
           </div>
         </div>
-      </section>
+      </section>)}
 
       {/* ── SECTOR 5: FINTECH — light ──────────────────────────────────────── */}
-      <section className="py-16 md:py-32 border-t border-dark/5">
+      {SHOW_FINTECH && (<section className="py-16 md:py-32 border-t border-dark/5">
         <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -461,7 +463,7 @@ export default function Portfolios() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section>)}
 
       {/* ── POSICIONAMENTO — dark ──────────────────────────────────────────── */}
       <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden">
@@ -490,13 +492,7 @@ export default function Portfolios() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { label: p.positioning.tags[0], Icon: Palmtree },
-                { label: p.positioning.tags[1], Icon: ShoppingBag },
-                { label: p.positioning.tags[2], Icon: Building2 },
-                { label: p.positioning.tags[3], Icon: Wheat },
-                { label: p.positioning.tags[4], Icon: CreditCard },
-              ].map(({ label, Icon }, i) => (
+              {p.positioning.tags.map((label, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -505,7 +501,7 @@ export default function Portfolios() {
                   transition={{ delay: i * 0.1 }}
                   className="flex items-center gap-2 px-4 py-2 border border-gold/25 text-gold/70 hover:border-gold hover:text-gold transition-all"
                 >
-                  <Icon size={12} />
+                  <ShoppingBag size={12} />
                   <span className="text-[10px] font-mono uppercase tracking-widest">{label}</span>
                 </motion.div>
               ))}
