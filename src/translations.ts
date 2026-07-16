@@ -10,6 +10,10 @@ export const translations = {
       portfolio: 'Portfólio',
       ai: 'LÉZ AI',
     },
+    bioToggle: {
+      professional: 'Profissional',
+      personal: 'Pessoal',
+    },
     bio: {
       title: 'BIOGRAFIA PROFISSIONAL',
       subtitle: 'Liä Éden Z\'anelato – Fundadora da LÉZ. NK Capital LTDA',
@@ -305,6 +309,10 @@ export const translations = {
       portfolio: 'Portfolio',
       ai: 'LÉZ AI',
     },
+    bioToggle: {
+      professional: 'Professional',
+      personal: 'Personal',
+    },
     bio: {
       title: 'PROFESSIONAL BIOGRAPHY',
       subtitle: 'Liä Éden Z\'anelato – Founder of LÉZ. NK Capital LTDA',
@@ -599,6 +607,10 @@ export const translations = {
       objectives: 'Obiettivi',
       portfolio: 'Portfolio',
       ai: 'LÉZ AI',
+    },
+    bioToggle: {
+      professional: 'Professionale',
+      personal: 'Personale',
     },
     bio: {
       title: 'BIOGRAFIA PROFESSIONALE',
