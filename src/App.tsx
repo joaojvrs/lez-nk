@@ -345,8 +345,16 @@ export default function App() {
               {t.bio.p4}
             </p>
 
-            <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
               {t.bio.p5}
+            </p>
+
+            <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
+              {t.bio.p6}
+            </p>
+
+            <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
+              {t.bio.p7}
             </p>
           </motion.div>
 

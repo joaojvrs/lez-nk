@@ -8,7 +8,7 @@ interface Message {
   text: string;
 }
 
-export const WEBHOOK_URL = "https://webhook.saveautomatik.shop/webhook/lezAI";
+export const WEBHOOK_URL = "https://uuuevtqjdhsvqeowswqn.supabase.co/functions/v1/lez-ai";
 
 /* ─── Shared chat hook ─────────────────────────────────────── */
 function useChat(initialMessage: string, errorDefault: string, errorConn: string) {
@@ -29,13 +29,14 @@ function useChat(initialMessage: string, errorDefault: string, errorConn: string
     const question = text.trim();
     if (!question || loading) return;
     setInput("");
+    const history = messages.slice(1); // skip the static greeting
     setMessages((prev) => [...prev, { role: "user", text: question }]);
     setLoading(true);
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: question }),
+        body: JSON.stringify({ message: question, history }),
       });
       const data = await res.json();
       const answer = data?.response || errorDefault;
