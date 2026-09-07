@@ -3,6 +3,7 @@ export type Lang = 'pt' | 'en' | 'it';
 export const translations = {
   pt: {
     nav: {
+      moda: 'Moda',
       bio: 'Bio',
       holding: 'Holding',
       strategy: 'Estratégia',
@@ -38,6 +39,11 @@ export const translations = {
       p5: 'Talvez esse tenha sido o maior desafio de todos.',
       p7: 'E deixo aqui a reflexão: quem é você quando nada sai como você desejou?',
     },
+    bioCollage: {
+      caption: 'Sou todas elas, ao mesmo tempo',
+      line1: 'criativa, líder, autêntica.',
+      line2: 'criatividade, liderança, autenticidade.',
+    },
     holding: {
       title: 'Portfólio Estratégico para',
       p1: 'A LÉZ.NK Capital Holding nasce com o propósito de construir um grupo empresarial sólido, diversificado e escalável, reunindo negócios de alto potencial de valorização em diferentes setores da economia.',
@@ -46,30 +52,44 @@ export const translations = {
       global: 'Global',
       assetClass: 'Classe de Ativo',
       multisector: 'Multissetorial',
+      diversityKicker: 'Diversidade de negócios.',
+      diversityLine: 'Múltiplas visões. Uma só direção: para frente.',
+      diversityP: 'A LÉZ.NK atua em diferentes setores, conectando negócios, marcas e investimentos em um ecossistema empresarial orientado por uma visão de longo prazo, inovação e geração de valor — com um olhar especial para a Tecnologia, como eixo de inovação e transformação.',
+      diversityTags: ['Moda & Têxtil', 'Real Estate', 'Hospitalidade', 'Tecnologia'],
     },
     mvv: {
       mission: {
         title: 'Missão',
-        p1: 'Desenvolver, estruturar e expandir negócios de alto valor agregado a partir de ativos imobiliários, transformando patrimônio em liquidez, crescimento e diversificação inteligente.',
-        p2: 'A holding busca construir um ecossistema empresarial sólido, rentável e sustentável, capaz de gerar patrimônio, impacto e retorno consistente para investidores e parceiros.',
+        p1: 'Criar, transformar e conectar negócios que gerem valor para pessoas, para a sociedade e para o futuro.',
       },
       vision: {
         title: 'Visão',
-        p1: 'Ser reconhecida como uma holding moderna e estratégica, referência em desenvolvimento imobiliário, investimentos, moda, negócios de luxo, hospitalidade e parcerias empresariais no Brasil.',
-        p2: 'Uma empresa construída sobre propósito, inovação e visão de longo prazo — capaz de transformar capital em legado duradouro para as próximas gerações.',
+        p1: 'Construir um ecossistema empresarial plural, inovador e humano, capaz de crescer sem perder propósito.',
       },
       values: {
         title: 'Valores',
         items: [
-          'Visão de longo prazo',
-          'Crescimento sustentável',
-          'Credibilidade e transparência',
-          'Inovação',
-          'Diversificação inteligente',
-          'Relacionamentos estratégicos',
-          'Excelência na execução',
+          'Coragem para criar',
+          'Verdade para conduzir',
+          'Respeito pelas pessoas',
+          'Responsabilidade pelo impacto',
+          'Liberdade para pensar',
+          'Resiliência para avançar',
         ],
       },
+    },
+    strategicPlanning: {
+      tag: 'Planejamento Estratégico',
+      title: 'Da Moda para um Ecossistema de Negócios e Experiências',
+      p1: 'A LÉZ.NK nasceu como uma holding empresarial, tendo a moda como seu carro-chefe e principal plataforma de posicionamento.',
+      p2: 'Com aproximadamente 25 anos de experiência no setor de vestuário, sua fundadora transformou conhecimento de mercado em uma visão mais ampla, construída a partir da paixão por diferentes culturas, estéticas e formas de viver. A pluralidade faz seu coração pulsar.',
+      p3: 'É dessa visão que nasce o propósito de transformar a moda em um ecossistema, conectando produtos, experiências, negócios e pessoas.',
+      visionTitle: 'Visão de Longo Prazo',
+      visionP1: 'A estratégia da LÉZ.NK está voltada à construção de um portfólio diversificado, com expansão progressiva para setores estratégicos. Entre eles, destacam-se o mercado imobiliário e a hotelaria, com a perspectiva de estabelecer, no longo prazo, uma rede própria de ativos e experiências.',
+      visionP2: 'A mesma filosofia que orienta o desenvolvimento dos produtos de moda será aplicada aos projetos imobiliários e hoteleiros: momentos, praticidade, segurança e aconchego. Mais do que desenvolver espaços, a LÉZ pretende criar ambientes que tenham propósito, identidade e capacidade de gerar experiências memoráveis.',
+      directionTitle: 'Direção Estratégica',
+      directionP: 'A LÉZ.NK busca construir uma plataforma empresarial na qual moda, imobiliário, hotelaria e experiências possam se conectar, criando sinergia entre negócios e fortalecendo o valor da marca no longo prazo.',
+      closing: ['Uma holding.', 'Uma visão integrada.', 'Múltiplos negócios.', 'Um ecossistema LÉZ.'],
     },
     objectives: {
       period: '2026 — 2036',
@@ -125,6 +145,17 @@ export const translations = {
       chartLabels: ['Moda'],
       donutLabels: ['Moda'],
     },
+    fashionPillar: {
+      titleL1: 'MODA,',
+      titleL2: 'MARCA,',
+      titleL3: 'LIFESTYLE',
+      bold: 'O carro-chefe da holding e principal plataforma de posicionamento da marca.',
+      p: 'A moda é onde tudo começou. Hoje reunimos marcas próprias com identidade e propósito — de alfaiataria premium a linha infantil e esportiva — construindo um ecossistema de lifestyle que sustenta a expansão da holding para os demais setores.',
+      ctaLabel: 'Ver coleções completas',
+    },
+    modaPage: {
+      back: 'Voltar ao site',
+    },
     realEstate: {
       titleL1: 'DESENVOLVIMENTO',
       titleL2: 'IMOBILIÁRIO',
@@ -176,21 +207,6 @@ export const translations = {
       objectiveTitle: 'Objetivo',
       objectiveP: 'Criar negócios escaláveis, com baixo custo operacional e alto potencial de crescimento, gerando presença de marca, receita recorrente e inteligência aplicada aos demais braços da holding.',
     },
-    fashion: {
-      titleL1: 'M O D A,    M A R C A,',
-      titleL2: 'L I F E S T Y L E',
-      bold: 'Desenvolvimento de marca própria focada em posicionamento premium e lifestyle.',
-      possibilitiesTitle: 'Possibilidades',
-      possibilitiesItems: [
-        'Marca de roupas e acessórios',
-        'Linha de produtos exclusivos',
-        'Parcerias com influenciadores e celebridades',
-        'Eventos e campanhas de branding',
-        'Expansão para e-commerce e lojas conceito',
-      ],
-      objectiveTitle: 'Objetivo',
-      objectiveP: 'Criar uma marca forte, com identidade própria, capaz de gerar valor emocional, recorrência de receita e ampliar o reconhecimento do grupo nos segmentos de luxo e lifestyle.',
-    },
     agribusiness: {
       titleL1: 'A G R O N E G Ó C I O',
       titleL2: 'A T I V O S \u00a0\u00a0 R U R A I S',
@@ -205,6 +221,26 @@ export const translations = {
       objectiveTitle: 'Objetivo',
       objectiveP: 'Criar segurança patrimonial, equilíbrio para o portfólio e uma base sólida de longo prazo, gerando reserva de valor e oportunidades de expansão para os demais negócios da holding.',
     },
+    globalExpansion: {
+      tag: 'Pré-Marketing Global',
+      titleL1: 'Expansão',
+      titleL2: 'Global',
+      intro: 'Nosso planejamento de expansão de vendas para loja física está projetado para os próximos 5 anos, com a meta de atingir 39 países selecionados para moda de luxo.',
+      goalLabel: 'Meta de países',
+      goalValue: '39',
+      storesLabel: 'Projeção de lojas físicas',
+      storesValue: '39 lojas em 5 anos',
+      regions: [
+        { label: 'América do Sul', countries: 'Brasil, Chile, Colômbia' },
+        { label: 'América Central e do Norte', countries: 'Estados Unidos, Canadá, México, Panamá' },
+        { label: 'Oriente Médio', countries: 'Emirados Árabes Unidos (Dubai), Arábia Saudita, Catar, Kuwait, Bahrein' },
+        { label: 'Ásia', countries: 'Japão, China, Hong Kong, Cingapura, Turquia' },
+        { label: 'Europa', countries: 'Alemanha, França, Reino Unido, Itália, Espanha, Suíça, Luxemburgo, Irlanda, Noruega, Islândia, Países Baixos, Bélgica, Suécia, Dinamarca, Áustria, Finlândia, Portugal, Malta, Chéquia, Eslováquia, Eslovênia, Chipre' },
+      ],
+      brandsLabel: 'Marcas em expansão',
+      destinationsLabel: 'destinos',
+      globeHint: 'Arraste para girar o globo',
+    },
     portfolios: {
       overview: {
         tag: 'Portfólio Corporativo',
@@ -216,13 +252,17 @@ export const translations = {
       },
       s01: {
         brandsLabel: 'Marcas do grupo',
-        badge: 'Teste',
         brandDescs: ['Moda masculina, feminina e acessórios', 'Moda infantil', 'Moda fitness'],
+        brandLongDescs: [
+          'LÉZ nasce para despertar aquilo que existe dentro de cada pessoa. EFATA (אֶתְפְּתַח) significa abre-te. Abre-te para quem você é. Para a sua identidade, sua essência, sua coragem de existir sem se moldar ao olhar dos outros. Porque antes de ter, é preciso ser. E quando você se reconhece, tudo aquilo que conquista passa a carregar a sua verdadeira identidade. LÉZ não veste pessoas. LÉZ revela quem elas são.',
+          'Uma coleção que nasceu para eternizar uma memória. O símbolo do São Bernardo nesta coleção não representa apenas uma espécie. Representa Maiah — uma companheira que me ensinou que existem formas de amor que não precisam de palavras. Maiah carrega uma história de superação, mas também de aconchego, carinho, proteção e uma lealdade que permanece para sempre. Foi desse sentimento que nasceu Maiah Bear Cub: do desejo de transformar amor em algo que se possa vestir, tocar e guardar. Assim como queremos proteger e cuidar dos nossos pequenos, cada peça carrega essa mesma intenção: acolher, proteger e expressar amor. Maiah Bear é amor transformado em vestir. É proteção como gesto. É carinho como identidade. É a lealdade canina transformada em símbolo. Porque algumas histórias não terminam. Elas permanecem — eternizadas naquilo que carregamos conosco.',
+          'NK APEX nasce do movimento de quem escolhe não parar. Uma marca esportiva para quem entende que força não é apenas chegar mais longe — é superar a si mesmo todos os dias. É disciplina, liberdade, energia e identidade. NK APEX veste movimento. Transforma esforço em conquista. E lembra que o verdadeiro desafio nunca foi ser melhor que alguém, mas descobrir até onde você pode chegar.',
+        ],
         modelTitle: 'Modelo de negócio',
         modelItems: [
           { label: 'Criação', value: 'Brasileira' },
-          { label: 'Fabricação', value: 'Internacional — China' },
-          { label: 'Vendas', value: 'Online + Loja física em São Paulo, SP' },
+          { label: 'Fabricação', value: 'América Latina, Ásia, Europa' },
+          { label: 'Vendas', value: 'Online + escalonamento de loja física em cada país selecionado, meta de 39 lojas' },
         ],
       },
       s02: {
@@ -302,6 +342,7 @@ export const translations = {
   /* ─── ENGLISH ──────────────────────────────────────────────────────────── */
   en: {
     nav: {
+      moda: 'Fashion',
       bio: 'Bio',
       holding: 'Holding',
       strategy: 'Strategy',
@@ -337,6 +378,11 @@ export const translations = {
       p5: 'Perhaps that was the greatest challenge of all.',
       p7: 'And I leave here this reflection: who are you when nothing turns out the way you wanted?',
     },
+    bioCollage: {
+      caption: 'I am all of them, at the same time',
+      line1: 'creative, leader, authentic.',
+      line2: 'creativity, leadership, authenticity.',
+    },
     holding: {
       title: 'Strategic Portfolio for',
       p1: 'LÉZ.NK Capital Holding was born with the purpose of building a solid, diversified, and scalable business group, bringing together businesses with high appreciation potential across different economic sectors.',
@@ -345,30 +391,44 @@ export const translations = {
       global: 'Global',
       assetClass: 'Asset Class',
       multisector: 'Multi-sector',
+      diversityKicker: 'Business diversity.',
+      diversityLine: 'Multiple visions. One direction: forward.',
+      diversityP: 'LÉZ.NK operates across different sectors, connecting businesses, brands, and investments into a business ecosystem guided by a long-term vision, innovation, and value creation — with a special focus on Technology as an axis of innovation and transformation.',
+      diversityTags: ['Fashion & Textile', 'Real Estate', 'Hospitality', 'Technology'],
     },
     mvv: {
       mission: {
         title: 'Mission',
-        p1: 'To develop, structure, and expand high-value-added businesses from real estate assets, transforming wealth into liquidity, growth, and intelligent diversification.',
-        p2: 'The holding seeks to build a solid, profitable, and sustainable business ecosystem capable of generating wealth, impact, and consistent returns for investors and partners.',
+        p1: 'To create, transform, and connect businesses that generate value for people, for society, and for the future.',
       },
       vision: {
         title: 'Vision',
-        p1: 'To be recognized as a modern and strategic holding, a reference in real estate development, investments, fashion, luxury business, hospitality, and business partnerships in Brazil.',
-        p2: 'A company built on purpose, innovation, and long-term vision — capable of transforming capital into a lasting legacy for future generations.',
+        p1: 'To build a plural, innovative, and human business ecosystem, capable of growing without losing its purpose.',
       },
       values: {
         title: 'Values',
         items: [
-          'Long-term vision',
-          'Sustainable growth',
-          'Credibility and transparency',
-          'Innovation',
-          'Intelligent diversification',
-          'Strategic relationships',
-          'Excellence in execution',
+          'Courage to create',
+          'Truth to lead',
+          'Respect for people',
+          'Responsibility for impact',
+          'Freedom to think',
+          'Resilience to move forward',
         ],
       },
+    },
+    strategicPlanning: {
+      tag: 'Strategic Planning',
+      title: 'From Fashion to a Business and Experience Ecosystem',
+      p1: 'LÉZ.NK was born as a business holding, with fashion as its flagship and main positioning platform.',
+      p2: 'With approximately 25 years of experience in the apparel industry, its founder transformed market knowledge into a broader vision, built from a passion for different cultures, aesthetics, and ways of living. Plurality makes her heart beat.',
+      p3: 'It is from this vision that the purpose of turning fashion into an ecosystem is born, connecting products, experiences, businesses, and people.',
+      visionTitle: 'Long-Term Vision',
+      visionP1: 'LÉZ.NK\'s strategy is focused on building a diversified portfolio, with progressive expansion into strategic sectors. Among them, the real estate market and hospitality stand out, with the prospect of establishing, in the long term, its own network of assets and experiences.',
+      visionP2: 'The same philosophy that guides the development of fashion products will be applied to real estate and hospitality projects: moments, practicality, security, and comfort. More than developing spaces, LÉZ intends to create environments with purpose, identity, and the ability to generate memorable experiences.',
+      directionTitle: 'Strategic Direction',
+      directionP: 'LÉZ.NK seeks to build a business platform in which fashion, real estate, hospitality, and experiences can connect, creating synergy between businesses and strengthening brand value in the long term.',
+      closing: ['A holding.', 'An integrated vision.', 'Multiple businesses.', 'A LÉZ ecosystem.'],
     },
     objectives: {
       period: '2026 — 2036',
@@ -424,6 +484,17 @@ export const translations = {
       chartLabels: ['Fashion'],
       donutLabels: ['Fashion'],
     },
+    fashionPillar: {
+      titleL1: 'FASHION,',
+      titleL2: 'BRAND,',
+      titleL3: 'LIFESTYLE',
+      bold: 'The holding\'s flagship and main brand positioning platform.',
+      p: 'Fashion is where it all began. Today we bring together proprietary brands with identity and purpose — from premium tailoring to a children\'s and athletic line — building a lifestyle ecosystem that sustains the holding\'s expansion into its other sectors.',
+      ctaLabel: 'View full collections',
+    },
+    modaPage: {
+      back: 'Back to site',
+    },
     realEstate: {
       titleL1: 'REAL ESTATE',
       titleL2: 'DEVELOPMENT',
@@ -475,21 +546,6 @@ export const translations = {
       objectiveTitle: 'Objective',
       objectiveP: 'To create scalable businesses with low operating costs and high growth potential, generating brand presence, recurring revenue, and applied intelligence to the other arms of the holding.',
     },
-    fashion: {
-      titleL1: 'F A S H I O N,    B R A N D,',
-      titleL2: 'L I F E S T Y L E',
-      bold: 'Development of a proprietary brand focused on premium positioning and lifestyle.',
-      possibilitiesTitle: 'Possibilities',
-      possibilitiesItems: [
-        'Clothing and accessories brand',
-        'Exclusive product line',
-        'Partnerships with influencers and celebrities',
-        'Events and branding campaigns',
-        'Expansion into e-commerce and concept stores',
-      ],
-      objectiveTitle: 'Objective',
-      objectiveP: 'To create a strong brand with its own identity, capable of generating emotional value, recurring revenue, and expanding the group\'s recognition in luxury and lifestyle segments.',
-    },
     agribusiness: {
       titleL1: 'A G R I B U S I N E S S',
       titleL2: 'R U R A L \u00a0\u00a0 A S S E T S',
@@ -504,6 +560,26 @@ export const translations = {
       objectiveTitle: 'Objective',
       objectiveP: 'To create asset security, balance for the portfolio, and a solid long-term base, generating value reserves and expansion opportunities for the holding\'s other businesses.',
     },
+    globalExpansion: {
+      tag: 'Global Pre-Marketing',
+      titleL1: 'Global',
+      titleL2: 'Expansion',
+      intro: 'Our physical store rollout plan is projected for the next 5 years, with the goal of reaching 39 selected countries for luxury fashion.',
+      goalLabel: 'Country goal',
+      goalValue: '39',
+      storesLabel: 'Physical store projection',
+      storesValue: '39 stores in 5 years',
+      regions: [
+        { label: 'South America', countries: 'Brazil, Chile, Colombia' },
+        { label: 'Central and North America', countries: 'United States, Canada, Mexico, Panama' },
+        { label: 'Middle East', countries: 'United Arab Emirates (Dubai), Saudi Arabia, Qatar, Kuwait, Bahrain' },
+        { label: 'Asia', countries: 'Japan, China, Hong Kong, Singapore, Turkey' },
+        { label: 'Europe', countries: 'Germany, France, United Kingdom, Italy, Spain, Switzerland, Luxembourg, Ireland, Norway, Iceland, Netherlands, Belgium, Sweden, Denmark, Austria, Finland, Portugal, Malta, Czechia, Slovakia, Slovenia, Cyprus' },
+      ],
+      brandsLabel: 'Brands expanding',
+      destinationsLabel: 'destinations',
+      globeHint: 'Drag to rotate the globe',
+    },
     portfolios: {
       overview: {
         tag: 'Corporate Portfolio',
@@ -515,13 +591,17 @@ export const translations = {
       },
       s01: {
         brandsLabel: 'Group brands',
-        badge: 'Test',
         brandDescs: ['Men\'s, women\'s fashion and accessories', 'Children\'s fashion', 'Fitness fashion'],
+        brandLongDescs: [
+          'LÉZ was born to awaken what already exists within each person. EFATA (אֶתְפְּתַח) means "be opened." Open yourself to who you are — to your identity, your essence, your courage to exist without shaping yourself to others\' gaze. Because before having, one must be. And once you recognize yourself, everything you achieve begins to carry your true identity. LÉZ doesn\'t dress people. LÉZ reveals who they are.',
+          'A collection born to make a memory eternal. The Saint Bernard symbol in this collection doesn\'t represent just a breed. It represents Maiah — a companion who taught me that there are forms of love that need no words. Maiah carries a story of resilience, but also of comfort, affection, protection, and a loyalty that lasts forever. It was from this feeling that Maiah Bear Cub was born: from the desire to turn love into something you can wear, touch, and keep. Just as we want to protect and care for our little ones, every piece carries that same intention: to embrace, protect, and express love. Maiah Bear is love turned into clothing. It is protection as a gesture. It is affection as identity. It is canine loyalty turned into a symbol. Because some stories don\'t end. They remain — made eternal in what we carry with us.',
+          'NK APEX is born from the movement of those who choose not to stop. An athletic brand for those who understand that strength isn\'t just about going further — it\'s about overcoming yourself every day. It\'s discipline, freedom, energy, and identity. NK APEX wears movement. It turns effort into achievement. And it reminds you that the real challenge was never being better than someone else, but discovering how far you can go.',
+        ],
         modelTitle: 'Business model',
         modelItems: [
           { label: 'Creation', value: 'Brazilian' },
-          { label: 'Manufacturing', value: 'International — China' },
-          { label: 'Sales', value: 'Online + Physical store in São Paulo, SP' },
+          { label: 'Manufacturing', value: 'Latin America, Asia, Europe' },
+          { label: 'Sales', value: 'Online + rollout of a physical store in each selected country, goal of 39 stores' },
         ],
       },
       s02: {
@@ -601,6 +681,7 @@ export const translations = {
   /* ─── ITALIAN ───────────────────────────────────────────────────────────── */
   it: {
     nav: {
+      moda: 'Moda',
       bio: 'Bio',
       holding: 'Holding',
       strategy: 'Strategia',
@@ -636,6 +717,11 @@ export const translations = {
       p5: 'Forse è stata questa la sfida più grande di tutte.',
       p7: 'E lascio qui questa riflessione: chi sei tu quando niente va come avresti voluto?',
     },
+    bioCollage: {
+      caption: 'Sono tutte loro, allo stesso tempo',
+      line1: 'creativa, leader, autentica.',
+      line2: 'creatività, leadership, autenticità.',
+    },
     holding: {
       title: 'Portfolio Strategico per',
       p1: 'LÉZ.NK Capital Holding nasce con lo scopo di costruire un gruppo aziendale solido, diversificato e scalabile, riunendo attività ad alto potenziale di valorizzazione in diversi settori dell\'economia.',
@@ -644,30 +730,44 @@ export const translations = {
       global: 'Globale',
       assetClass: 'Classe di Attivo',
       multisector: 'Multisettoriale',
+      diversityKicker: 'Diversità di business.',
+      diversityLine: 'Molteplici visioni. Un\'unica direzione: in avanti.',
+      diversityP: 'La LÉZ.NK opera in diversi settori, collegando business, marchi e investimenti in un ecosistema aziendale orientato da una visione a lungo termine, innovazione e generazione di valore — con uno sguardo speciale alla Tecnologia, come asse di innovazione e trasformazione.',
+      diversityTags: ['Moda & Tessile', 'Real Estate', 'Ospitalità', 'Tecnologia'],
     },
     mvv: {
       mission: {
         title: 'Missione',
-        p1: 'Sviluppare, strutturare ed espandere attività ad alto valore aggiunto a partire da asset immobiliari, trasformando il patrimonio in liquidità, crescita e diversificazione intelligente.',
-        p2: 'La holding mira a costruire un ecosistema aziendale solido, redditizio e sostenibile, capace di generare patrimonio, impatto e rendimento costante per investitori e partner.',
+        p1: 'Creare, trasformare e connettere aziende che generino valore per le persone, per la società e per il futuro.',
       },
       vision: {
         title: 'Visione',
-        p1: 'Essere riconosciuta come una holding moderna e strategica, punto di riferimento nello sviluppo immobiliare, negli investimenti, nella moda, nel lusso, nell\'ospitalità e nelle partnership aziendali in Brasile.',
-        p2: 'Un\'azienda costruita su scopo, innovazione e visione a lungo termine — capace di trasformare il capitale in un\'eredità duratura per le generazioni future.',
+        p1: 'Costruire un ecosistema aziendale plurale, innovativo e umano, capace di crescere senza perdere il proprio scopo.',
       },
       values: {
         title: 'Valori',
         items: [
-          'Visione a lungo termine',
-          'Crescita sostenibile',
-          'Credibilità e trasparenza',
-          'Innovazione',
-          'Diversificazione intelligente',
-          'Relazioni strategiche',
-          'Eccellenza nell\'esecuzione',
+          'Coraggio di creare',
+          'Verità per guidare',
+          'Rispetto per le persone',
+          'Responsabilità per l\'impatto',
+          'Libertà di pensare',
+          'Resilienza per andare avanti',
         ],
       },
+    },
+    strategicPlanning: {
+      tag: 'Pianificazione Strategica',
+      title: 'Dalla Moda a un Ecosistema di Business ed Esperienze',
+      p1: 'La LÉZ.NK è nata come holding aziendale, con la moda come punta di diamante e principale piattaforma di posizionamento.',
+      p2: 'Con circa 25 anni di esperienza nel settore dell\'abbigliamento, la sua fondatrice ha trasformato la conoscenza del mercato in una visione più ampia, costruita a partire dalla passione per culture, estetiche e modi di vivere diversi. La pluralità fa battere il suo cuore.',
+      p3: 'È da questa visione che nasce il proposito di trasformare la moda in un ecosistema, collegando prodotti, esperienze, business e persone.',
+      visionTitle: 'Visione a Lungo Termine',
+      visionP1: 'La strategia della LÉZ.NK è orientata alla costruzione di un portfolio diversificato, con espansione progressiva verso settori strategici. Tra questi, si distinguono il mercato immobiliare e l\'ospitalità, con la prospettiva di stabilire, nel lungo periodo, una rete propria di asset ed esperienze.',
+      visionP2: 'La stessa filosofia che guida lo sviluppo dei prodotti di moda sarà applicata ai progetti immobiliari e alberghieri: momenti, praticità, sicurezza e comfort. Più che sviluppare spazi, LÉZ intende creare ambienti con proposito, identità e capacità di generare esperienze memorabili.',
+      directionTitle: 'Direzione Strategica',
+      directionP: 'La LÉZ.NK cerca di costruire una piattaforma aziendale in cui moda, immobiliare, ospitalità ed esperienze possano connettersi, creando sinergia tra i business e rafforzando il valore del marchio nel lungo periodo.',
+      closing: ['Una holding.', 'Una visione integrata.', 'Molteplici business.', 'Un ecosistema LÉZ.'],
     },
     objectives: {
       period: '2026 — 2036',
@@ -723,6 +823,17 @@ export const translations = {
       chartLabels: ['Moda'],
       donutLabels: ['Moda'],
     },
+    fashionPillar: {
+      titleL1: 'MODA,',
+      titleL2: 'MARCHIO,',
+      titleL3: 'LIFESTYLE',
+      bold: 'Il fiore all\'occhiello della holding e principale piattaforma di posizionamento del marchio.',
+      p: 'La moda è dove tutto è iniziato. Oggi riuniamo marchi propri con identità e proposito — dall\'alta sartoria alla linea bambino e sportiva — costruendo un ecosistema lifestyle che sostiene l\'espansione della holding verso gli altri settori.',
+      ctaLabel: 'Vedi le collezioni complete',
+    },
+    modaPage: {
+      back: 'Torna al sito',
+    },
     realEstate: {
       titleL1: 'SVILUPPO',
       titleL2: 'IMMOBILIARE',
@@ -774,21 +885,6 @@ export const translations = {
       objectiveTitle: 'Obiettivo',
       objectiveP: 'Creare attività scalabili, con bassi costi operativi e alto potenziale di crescita, generando presenza del marchio, fatturato ricorrente e intelligenza applicata agli altri rami della holding.',
     },
-    fashion: {
-      titleL1: 'M O D A,    M A R C A,',
-      titleL2: 'L I F E S T Y L E',
-      bold: 'Sviluppo di un marchio proprio focalizzato sul posizionamento premium e lifestyle.',
-      possibilitiesTitle: 'Possibilità',
-      possibilitiesItems: [
-        'Marchio di abbigliamento e accessori',
-        'Linea di prodotti esclusivi',
-        'Partnership con influencer e celebrità',
-        'Eventi e campagne di branding',
-        'Espansione nell\'e-commerce e nei concept store',
-      ],
-      objectiveTitle: 'Obiettivo',
-      objectiveP: 'Creare un marchio forte, con identità propria, capace di generare valore emotivo, ricorrenza di fatturato e ampliare il riconoscimento del gruppo nei segmenti del lusso e lifestyle.',
-    },
     agribusiness: {
       titleL1: 'A G R I C O L T U R A',
       titleL2: 'A T T I V I T À \u00a0\u00a0 R U R A L I',
@@ -803,6 +899,26 @@ export const translations = {
       objectiveTitle: 'Obiettivo',
       objectiveP: 'Creare sicurezza patrimoniale, equilibrio per il portfolio e una base solida a lungo termine, generando riserve di valore e opportunità di espansione per gli altri business della holding.',
     },
+    globalExpansion: {
+      tag: 'Pre-Marketing Globale',
+      titleL1: 'Espansione',
+      titleL2: 'Globale',
+      intro: 'Il nostro piano di espansione dei negozi fisici è proiettato per i prossimi 5 anni, con l\'obiettivo di raggiungere 39 paesi selezionati per la moda di lusso.',
+      goalLabel: 'Obiettivo paesi',
+      goalValue: '39',
+      storesLabel: 'Proiezione negozi fisici',
+      storesValue: '39 negozi in 5 anni',
+      regions: [
+        { label: 'America del Sud', countries: 'Brasile, Cile, Colombia' },
+        { label: 'America Centrale e del Nord', countries: 'Stati Uniti, Canada, Messico, Panama' },
+        { label: 'Medio Oriente', countries: 'Emirati Arabi Uniti (Dubai), Arabia Saudita, Qatar, Kuwait, Bahrein' },
+        { label: 'Asia', countries: 'Giappone, Cina, Hong Kong, Singapore, Turchia' },
+        { label: 'Europa', countries: 'Germania, Francia, Regno Unito, Italia, Spagna, Svizzera, Lussemburgo, Irlanda, Norvegia, Islanda, Paesi Bassi, Belgio, Svezia, Danimarca, Austria, Finlandia, Portogallo, Malta, Cechia, Slovacchia, Slovenia, Cipro' },
+      ],
+      brandsLabel: 'Marchi in espansione',
+      destinationsLabel: 'destinazioni',
+      globeHint: 'Trascina per ruotare il globo',
+    },
     portfolios: {
       overview: {
         tag: 'Portfolio Aziendale',
@@ -814,13 +930,17 @@ export const translations = {
       },
       s01: {
         brandsLabel: 'Marchi del gruppo',
-        badge: 'Test',
         brandDescs: ['Moda maschile, femminile e accessori', 'Moda bambino', 'Moda fitness'],
+        brandLongDescs: [
+          'LÉZ nasce per risvegliare ciò che esiste già dentro ogni persona. EFATA (אֶתְפְּתַח) significa "apriti." Apriti a chi sei — alla tua identità, alla tua essenza, al tuo coraggio di esistere senza modellarti sullo sguardo altrui. Perché prima di avere, bisogna essere. E quando ti riconosci, tutto ciò che conquisti inizia a portare la tua vera identità. LÉZ non veste le persone. LÉZ rivela chi sono.',
+          'Una collezione nata per rendere eterno un ricordo. Il simbolo del San Bernardo in questa collezione non rappresenta solo una razza. Rappresenta Maiah — una compagna che mi ha insegnato che esistono forme d\'amore che non hanno bisogno di parole. Maiah porta con sé una storia di resilienza, ma anche di calore, affetto, protezione e una lealtà che resta per sempre. È da questo sentimento che è nata Maiah Bear Cub: dal desiderio di trasformare l\'amore in qualcosa che si possa indossare, toccare e custodire. Così come vogliamo proteggere e prenderci cura dei nostri piccoli, ogni capo porta la stessa intenzione: accogliere, proteggere ed esprimere amore. Maiah Bear è amore trasformato in abito. È protezione come gesto. È affetto come identità. È la lealtà canina trasformata in simbolo. Perché alcune storie non finiscono. Restano — rese eterne in ciò che portiamo con noi.',
+          'NK APEX nasce dal movimento di chi sceglie di non fermarsi. Un marchio sportivo per chi capisce che la forza non è solo arrivare più lontano — è superare se stessi ogni giorno. È disciplina, libertà, energia e identità. NK APEX veste il movimento. Trasforma lo sforzo in conquista. E ricorda che la vera sfida non è mai stata essere migliori di qualcun altro, ma scoprire fin dove puoi arrivare.',
+        ],
         modelTitle: 'Modello di business',
         modelItems: [
           { label: 'Creazione', value: 'Brasiliana' },
-          { label: 'Produzione', value: 'Internazionale — Cina' },
-          { label: 'Vendite', value: 'Online + Negozio fisico a São Paulo, SP' },
+          { label: 'Produzione', value: 'America Latina, Asia, Europa' },
+          { label: 'Vendite', value: 'Online + apertura di un negozio fisico in ogni paese selezionato, obiettivo di 39 negozi' },
         ],
       },
       s02: {

@@ -77,8 +77,6 @@ export default function Portfolios() {
   const { t } = useLang();
   const p = t.portfolios;
 
-  const brandNames = ["LÉZ אתפתח", "Maiah Bear Cub", "N.K Apex"];
-
   return (
     <>
       {/* ── GROUP OVERVIEW — dark ──────────────────────────────────────────── */}
@@ -148,63 +146,6 @@ export default function Portfolios() {
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── SECTOR 1: MODA — light ─────────────────────────────────────────── */}
-      <section className="py-16 md:py-32 border-t border-dark/5">
-        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-10 md:mb-14"
-          >
-            <SectorLabel number="01" />
-            <div className="flex items-center gap-4 mb-3">
-              <div className="w-10 h-10 bg-dark flex items-center justify-center flex-shrink-0">
-                <ShoppingBag size={18} className="text-gold" />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-serif font-bold tracking-tighter uppercase">
-                Moda
-              </h3>
-            </div>
-            <p className="text-dark/40 text-[9px] font-mono uppercase tracking-[0.3em] ml-14">
-              {p.s01.brandsLabel}
-            </p>
-          </motion.div>
-
-          {/* Brands */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12 md:mb-16">
-            {brandNames.map((name, i) => (
-              <ProjectCard key={i} delay={i * 0.1}>
-                <div className="flex items-start justify-between mb-4">
-                  <h4 className="font-serif font-bold text-lg leading-tight">{name}</h4>
-                  <span className="text-[8px] font-mono uppercase tracking-widest px-2 py-1 border border-gold/30 text-gold/60 ml-2 flex-shrink-0">
-                    {p.s01.badge}
-                  </span>
-                </div>
-                <p className="text-dark/55 text-xs font-sans leading-relaxed">{p.s01.brandDescs[i]}</p>
-              </ProjectCard>
-            ))}
-          </div>
-
-          {/* Model */}
-          <div className="border-t border-dark/8 pt-10">
-            <p className="text-[9px] font-mono text-gold/70 uppercase tracking-[0.35em] mb-6">
-              {p.s01.modelTitle}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {p.s01.modelItems.map(({ label, value }, i) => (
-                <div key={i} className="p-4 border border-dark/8 bg-white/40 backdrop-blur-sm">
-                  <p className="text-[9px] font-mono text-gold/70 uppercase tracking-widest mb-2">
-                    {label}
-                  </p>
-                  <p className="text-sm font-sans font-medium text-dark">{value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

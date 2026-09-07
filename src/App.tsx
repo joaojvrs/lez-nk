@@ -5,9 +5,9 @@
 
 // ── Feature flags — mude para true para reativar no site ─────────────────
 const SHOW_STRATEGY = false;
-const SHOW_REAL_ESTATE = false;
-const SHOW_HOSPITALITY = false;
-const SHOW_TECHNOLOGY = false;
+const SHOW_REAL_ESTATE = true;
+const SHOW_HOSPITALITY = true;
+const SHOW_TECHNOLOGY = true;
 const SHOW_AGRIBUSINESS = false;
 const SHOW_VITAT = false;
 // ─────────────────────────────────────────────────────────────────────────
@@ -32,13 +32,14 @@ import {
   X
 } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import logoLez from "./logo-lez.png";
-import fotoLia from "./foto-lia.png";
 import agronegocio from "./agronegocio.jpeg";
 import devimob from "./desenvolvimento imobiliario.jpeg";
 import hotelaria from "./hotelaria.jpeg";
 import ChatWidget, { ChatSection } from "./ChatWidget";
 import Portfolios from "./Portfolios";
+import GlobalExpansion from "./GlobalExpansion";
 import { useLang } from "./i18n";
 import type { Lang } from "./translations";
 import {
@@ -142,12 +143,13 @@ export default function App() {
           <img src={logoLez} alt="LÉZ.NK Logo" className="h-12 w-auto object-contain" />
           <span className="hidden sm:inline text-white">LÉZ.NK CAPITAL</span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">
-          <a href="#bio" className="hover:text-gold transition-colors">{t.nav.bio}</a>
-          <a href="#holding" className="hover:text-gold transition-colors">{t.nav.holding}</a>
-          <a href="#estrategia" className="hover:text-gold transition-colors">{t.nav.strategy}</a>
-          <a href="#objetivos" className="hover:text-gold transition-colors">{t.nav.objectives}</a>
-          <a href="#portfolio" className="hover:text-gold transition-colors">{t.nav.portfolio}</a>
+        <div className="hidden xl:flex items-center gap-8 text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">
+          <Link to="/moda" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.moda}</Link>
+          <a href="#bio" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.bio}</a>
+          <a href="#holding" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.holding}</a>
+          <a href="#estrategia" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.strategy}</a>
+          <a href="#objetivos" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.objectives}</a>
+          <a href="#portfolio" className="px-1 py-2 hover:text-gold transition-colors">{t.nav.portfolio}</a>
           <a
             href="#ia"
             className="flex items-center gap-2 bg-gold text-dark px-4 py-2 hover:bg-white transition-all font-bold tracking-widest"
@@ -178,7 +180,7 @@ export default function App() {
         </div>
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-white p-1 focus:outline-none"
+          className="xl:hidden text-white p-2 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Menu"
         >
@@ -192,8 +194,15 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-0 w-full bg-dark border-t border-white/5 py-6 px-6 flex flex-col gap-5 z-50"
+            className="xl:hidden absolute top-full left-0 w-full bg-dark border-t border-white/5 py-6 px-6 flex flex-col gap-3 z-50"
           >
+            <Link
+              to="/moda"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 text-white/60 hover:text-gold transition-colors text-xs uppercase tracking-[0.25em] font-bold"
+            >
+              {t.nav.moda}
+            </Link>
             {[
               { href: "#bio", label: t.nav.bio },
               { href: "#holding", label: t.nav.holding },
@@ -205,7 +214,7 @@ export default function App() {
                 key={href}
                 href={href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white/60 hover:text-gold transition-colors text-xs uppercase tracking-[0.25em] font-bold"
+                className="py-2 text-white/60 hover:text-gold transition-colors text-xs uppercase tracking-[0.25em] font-bold"
               >
                 {label}
               </a>
@@ -240,7 +249,7 @@ export default function App() {
           </motion.div>
         )}
 
-        <div className="hidden md:flex items-center gap-4" />
+        <div className="hidden xl:flex items-center gap-4" />
       </nav>
 
       {/* Hero Section */}
@@ -295,7 +304,7 @@ export default function App() {
           {/* Image column */}
           <div className="relative flex-shrink-0 w-full h-72 md:h-auto md:w-[280px] lg:w-[320px]">
             <TechImage
-              src={fotoLia}
+              src={bioTab === 'prof' ? '/lia/lia3.png' : '/lia/lia5.png'}
               alt="Lia Eden Z'anelato"
               className="w-full h-full shadow-2xl"
               imgClassName="object-top"
@@ -422,6 +431,45 @@ export default function App() {
         </div>
       </div>
 
+      {/* Bio Photo Collage */}
+      <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto pb-16 md:pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="border border-gold/25 bg-[#EFE7DA] p-3 md:p-8"
+        >
+          <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-10">
+            {["/lia/lia5.png", "/lia/lia3.png", "/lia/lia6.png"].map((src, i) => (
+              <div key={i} className="aspect-[3/4] overflow-hidden">
+                <img
+                  src={src}
+                  alt="Liä Éden Z'anelato"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-3 md:gap-6 mb-4">
+              <div className="h-[1px] flex-1 max-w-16 md:max-w-32 bg-dark/25" />
+              <p className="font-serif text-lg md:text-2xl text-dark/80 whitespace-nowrap">
+                {t.bioCollage.caption}
+              </p>
+              <div className="h-[1px] flex-1 max-w-16 md:max-w-32 bg-dark/25" />
+            </div>
+            <p className="font-serif italic text-[11px] md:text-xs text-dark/50 tracking-wide">
+              – {t.bioCollage.line1} –
+            </p>
+            <p className="font-serif italic text-[11px] md:text-xs text-dark/50 tracking-wide">
+              – {t.bioCollage.line2} –
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Presentation Section */}
       <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="holding">
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
@@ -454,13 +502,38 @@ export default function App() {
               </p>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-6 glass-card border border-white/10">
+                <a
+                  href="#expansao"
+                  className="p-6 glass-card border border-white/10 hover:border-gold/40 transition-colors"
+                >
                   <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">{t.holding.expansion}</div>
                   <div className="text-base md:text-2xl font-bold">{t.holding.global}</div>
-                </div>
+                </a>
                 <div className="p-6 glass-card border border-white/10">
                   <div className="text-gold font-mono text-[10px] mb-2 uppercase tracking-widest">{t.holding.assetClass}</div>
                   <div className="text-base md:text-2xl font-bold break-words">{t.holding.multisector}</div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/8">
+                <p className="text-white font-serif text-lg md:text-xl font-bold leading-snug mb-1">
+                  {t.holding.diversityKicker}
+                </p>
+                <p className="text-gold/80 font-serif text-base md:text-lg italic mb-4">
+                  {t.holding.diversityLine}
+                </p>
+                <p className="text-white/60 font-sans text-sm leading-[1.9] text-justify mb-5">
+                  {t.holding.diversityP}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {t.holding.diversityTags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 border border-gold/25 text-gold/70 text-[10px] font-mono uppercase tracking-widest"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
@@ -468,7 +541,7 @@ export default function App() {
             {/* Right block — image */}
             <div className="relative flex-shrink-0 w-full h-64 md:h-auto md:w-[45%]">
               <TechImage
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069"
+                src="/ecossistematech.png"
                 alt="Corporate Strategy"
                 className="w-full h-full shadow-2xl"
               />
@@ -493,12 +566,9 @@ export default function App() {
             <Activity size={28} />
           </div>
           <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter mt-8 mb-8">{t.mvv.mission.title}</h3>
-          <div className="flex-grow flex flex-col justify-between text-dark/60 text-sm font-sans text-justify">
+          <div className="flex-grow flex flex-col justify-center text-dark/60 text-sm font-sans text-justify">
             <p className="leading-[2]">
               {t.mvv.mission.p1}
-            </p>
-            <p className="leading-[2]">
-              {t.mvv.mission.p2}
             </p>
           </div>
         </motion.div>
@@ -515,12 +585,9 @@ export default function App() {
             <Layers size={28} />
           </div>
           <h3 className="text-3xl font-serif font-bold uppercase tracking-tighter mt-8 mb-8">{t.mvv.vision.title}</h3>
-          <div className="flex-grow flex flex-col justify-between text-dark/60 text-sm font-sans text-justify">
+          <div className="flex-grow flex flex-col justify-center text-dark/60 text-sm font-sans text-justify">
             <p className="leading-[2]">
               {t.mvv.vision.p1}
-            </p>
-            <p className="leading-[2] text-dark/40 italic">
-              {t.mvv.vision.p2}
             </p>
           </div>
         </motion.div>
@@ -548,15 +615,76 @@ export default function App() {
 
       </Section>
 
-      {/* Objectives Timeline */}
+      {/* Objectives Timeline — narrativa introdutória (sem título próprio) + resumo sticky ao lado das fases */}
       <Section id="objetivos">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mb-20 md:mb-28"
+        >
+          <div className="mb-10">
+            <div className="w-8 h-[1px] bg-gold mb-5" />
+            <span className="text-gold font-mono text-[11px] uppercase tracking-[0.35em] font-bold mb-4 block">
+              {t.strategicPlanning.tag}
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight tracking-tighter mb-8 max-w-2xl">
+              {t.strategicPlanning.title}
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-dark/75 text-base md:text-lg font-sans leading-[1.8] text-justify mb-14">
+            <p>{t.strategicPlanning.p1}</p>
+            <p>{t.strategicPlanning.p2}</p>
+            <p>{t.strategicPlanning.p3}</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-10 mb-14">
+            <div>
+              <h4 className="text-gold font-mono text-xs uppercase tracking-[0.3em] font-bold mb-4">
+                {t.strategicPlanning.visionTitle}
+              </h4>
+              <p className="text-dark/75 text-base font-sans leading-[1.8] text-justify mb-4">
+                {t.strategicPlanning.visionP1}
+              </p>
+              <p className="text-dark/75 text-base font-sans leading-[1.8] text-justify">
+                {t.strategicPlanning.visionP2}
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-gold font-mono text-xs uppercase tracking-[0.3em] font-bold mb-4">
+                {t.strategicPlanning.directionTitle}
+              </h4>
+              <p className="text-dark/75 text-base font-sans leading-[1.8] text-justify">
+                {t.strategicPlanning.directionP}
+              </p>
+            </div>
+          </div>
+
+          <div className="border-l-2 border-gold pl-6 md:pl-8 py-2">
+            <p className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tighter">
+              {t.strategicPlanning.closing.map((line, i) => (
+                <span key={i}>
+                  {i === t.strategicPlanning.closing.length - 1 ? (
+                    <span className="gold-gradient font-bold">{line}</span>
+                  ) : (
+                    <span className="font-bold">{line}</span>
+                  )}
+                  {i < t.strategicPlanning.closing.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          </div>
+        </motion.div>
+
         <div className="flex flex-col lg:flex-row gap-12 md:gap-24">
           <div className="lg:w-1/3">
             <div className="lg:sticky lg:top-40">
               <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] mb-4 block font-bold">{t.objectives.period}</span>
               <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8 tracking-tighter leading-none">{t.objectives.title} <br /><span className="gold-gradient">{t.objectives.titleGold}</span></h2>
-              <div className="p-6 border border-dark/5 bg-white/30 backdrop-blur-sm">
-                <p className="text-xs text-dark/40 font-mono leading-relaxed">
+              <div className="p-6 border border-gold/20 bg-gold/[0.04]">
+                <p className="text-sm text-dark/70 font-sans leading-relaxed">
                   {t.objectives.planningText}
                 </p>
               </div>
@@ -602,6 +730,9 @@ export default function App() {
           </div>
         </div>
       </Section>
+
+      {/* Global Expansion — Globe */}
+      <GlobalExpansion />
 
       {/* Strategy Charts Section */}
       {SHOW_STRATEGY && <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="estrategia">
@@ -741,6 +872,58 @@ export default function App() {
           </div>
         </div>
       </section>}
+
+      {/* Fashion Pillar — entry point to the full brand catalog page */}
+      <section id="moda" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-start md:items-stretch">
+
+          {/* Left block */}
+          <div className="flex-1 flex flex-col min-w-0">
+
+            <div>
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
+                <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
+              </div>
+              <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
+                {t.fashionPillar.titleL1}<br />
+                {t.fashionPillar.titleL2}<br />
+                {t.fashionPillar.titleL3}
+              </h2>
+            </div>
+
+            <div className="mt-6 md:mt-auto mb-6 text-dark/70 text-sm font-sans">
+              <p className="font-bold text-dark mb-2 leading-snug">
+                {t.fashionPillar.bold}
+              </p>
+              <p className="leading-[1.7] text-justify">
+                {t.fashionPillar.p}
+              </p>
+            </div>
+
+            <Link
+              to="/moda"
+              className="inline-flex items-center gap-2 self-start bg-dark text-white px-6 py-3 hover:bg-gold transition-colors font-bold text-xs uppercase tracking-widest"
+            >
+              {t.fashionPillar.ctaLabel}
+              <ArrowRight size={14} />
+            </Link>
+
+          </div>
+
+          {/* Right — image */}
+          <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[38%]">
+            <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
+              <TechImage
+                src="/lez-efata/ternos/terno1.png"
+                alt="LÉZ.NK Fashion"
+                className="w-full h-full shadow-2xl"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* Real Estate Detail Section */}
       {SHOW_REAL_ESTATE && <section id="imobiliario" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
@@ -931,67 +1114,6 @@ export default function App() {
 
         </div>
       </section>}
-
-      {/* Fashion Detail Section */}
-      <section className="bg-dark text-white py-16 md:py-32 relative overflow-hidden" id="moda">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-          <div className="tech-grid w-full h-full" />
-        </div>
-        <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row-reverse gap-8 md:gap-14 items-start md:items-stretch">
-
-            {/* Image */}
-            <div className="flex-shrink-0 w-full h-64 md:h-auto md:w-[42%]">
-              <div className="w-full h-full md:h-auto" style={{ aspectRatio: '1/1' }}>
-                <TechImage
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=2070"
-                  alt="Fashion and Lifestyle"
-                  className="w-full h-full shadow-2xl"
-                />
-              </div>
-            </div>
-
-            {/* Text block */}
-            <div className="flex-1 flex flex-col min-w-0">
-
-              <div>
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-8 h-[1px] bg-gold flex-shrink-0" />
-                  <span className="text-gold text-[10px] font-mono uppercase tracking-[0.4em] font-bold whitespace-nowrap">LÉZ.NK Capital</span>
-                </div>
-                <h2 className="font-serif font-bold tracking-tighter uppercase leading-[1.05]" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.9rem)' }}>
-                  {t.fashion.titleL1}<br />
-                  {t.fashion.titleL2}
-                </h2>
-              </div>
-
-              <div className="mt-6 md:mt-auto mb-6 text-white/60 text-sm font-sans">
-                <p className="font-bold text-white leading-snug">
-                  {t.fashion.bold}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start">
-                <div>
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">{t.fashion.possibilitiesTitle}</h4>
-                  <ul className="space-y-[7px] text-[10px] text-white/60 font-sans">
-                    {t.fashion.possibilitiesItems.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2"><div className="mt-[5px] w-1 h-1 bg-gold shrink-0" />{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold mb-3">{t.fashion.objectiveTitle}</h4>
-                  <p className="text-xs italic text-white/60 font-sans leading-[1.8]">
-                    {t.fashion.objectiveP}
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Agribusiness Detail Section */}
       {SHOW_AGRIBUSINESS && <section id="agronegocio" className="border-t border-dark/5 py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
