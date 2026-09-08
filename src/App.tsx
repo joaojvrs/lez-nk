@@ -352,25 +352,25 @@ export default function App() {
               <div className="w-8 h-[1px] bg-gold mb-5" />
 
               {/* Toggle: Professional / Personal / Social */}
-              <div className="inline-flex flex-wrap border border-dark/15 mb-6">
+              <div className="inline-flex w-full border border-dark/15 mb-6 sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setBioTab('prof')}
-                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'prof' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                  className={`flex-1 whitespace-nowrap px-2 py-2 text-[8px] font-mono uppercase tracking-tight font-bold transition-colors sm:flex-none sm:px-4 sm:text-[10px] sm:tracking-widest ${bioTab === 'prof' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
                 >
                   {t.bioToggle.professional}
                 </button>
                 <button
                   type="button"
                   onClick={() => setBioTab('pessoal')}
-                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'pessoal' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                  className={`flex-1 whitespace-nowrap px-2 py-2 text-[8px] font-mono uppercase tracking-tight font-bold transition-colors sm:flex-none sm:px-4 sm:text-[10px] sm:tracking-widest ${bioTab === 'pessoal' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
                 >
                   {t.bioToggle.personal}
                 </button>
                 <button
                   type="button"
                   onClick={() => setBioTab('social')}
-                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'social' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                  className={`flex-1 whitespace-nowrap px-2 py-2 text-[8px] font-mono uppercase tracking-tight font-bold transition-colors sm:flex-none sm:px-4 sm:text-[10px] sm:tracking-widest ${bioTab === 'social' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
                 >
                   {t.bioToggle.social}
                 </button>

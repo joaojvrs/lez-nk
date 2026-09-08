@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
-import { ArrowDown, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowDown, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLang } from "../i18n";
 import type { Lang } from "../translations";
-import { brandNames, brandImages, lezEfataGallery, maiahBearCubGallery, nkApexGalleryPages } from "../brands";
+import { brandNames, brandImages, lezEfataGallery, maiahBearCubGallery, nkApexGallery } from "../brands";
 import logoLez from "../logo-lez.png";
 import BrandGallery from "../components/BrandGallery";
 
@@ -17,7 +17,6 @@ const languages: { code: Lang; flag: string }[] = [
 export default function ModaPage() {
   const { lang, setLang, t } = useLang();
   const p = t.portfolios;
-  const [nkApexPage, setNkApexPage] = useState(0);
 
   useEffect(() => {
     const target = window.location.hash ? document.querySelector(window.location.hash) : null;
@@ -130,9 +129,9 @@ export default function ModaPage() {
           </div>
         </section>
 
-        <section id="marcas" className="px-6 py-20 md:px-12 md:py-28 lg:px-24">
+        <section id="marcas" className="px-6 pt-20 md:px-12 md:pt-28 lg:px-24">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-7 border-b border-dark/10 pb-12 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-16">
+            <div className="grid gap-7 border-b border-dark/10 pb-8 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-10">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.38em] text-gold">
                 {p.s01.brandsLabel} · 03
               </p>
@@ -187,70 +186,26 @@ export default function ModaPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.18 }}
                     transition={{ duration: 0.9 }}
-                    className={`relative ${copyFirst ? "lg:order-2" : "lg:order-1"}`}
+                    className={`grid grid-cols-12 gap-2.5 md:gap-4 ${copyFirst ? "lg:order-2" : "lg:order-1"}`}
                   >
-                    <div className="grid grid-cols-12 gap-2.5 md:gap-4">
-                      {(() => {
-                        const images = index === 2 ? nkApexGalleryPages[nkApexPage] : brandImages[index];
-                        return (
-                          <>
-                            <div className="col-span-8 row-span-2 aspect-[4/5] overflow-hidden bg-dark/5">
-                              <img
-                                src={images[0]}
-                                alt={`${name} — imagem principal`}
-                                loading="lazy"
-                                className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
-                              />
-                            </div>
-                            {images.slice(1, 3).map((src, imageIndex) => (
-                              <div key={src} className="col-span-4 aspect-[4/5] overflow-hidden bg-dark/5">
-                                <img
-                                  src={src}
-                                  alt={`${name} — detalhe ${imageIndex + 1}`}
-                                  loading="lazy"
-                                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.035]"
-                                />
-                              </div>
-                            ))}
-                          </>
-                        );
-                      })()}
+                    <div className="col-span-8 row-span-2 aspect-[4/5] overflow-hidden bg-dark/5">
+                      <img
+                        src={brandImages[index][0]}
+                        alt={`${name} — imagem principal`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
+                      />
                     </div>
-
-                    {index === 2 && (
-                      <>
-                        {nkApexPage === 1 && (
-                          <button
-                            type="button"
-                            onClick={() => setNkApexPage(0)}
-                            aria-label="Ver fotos anteriores"
-                            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-dark/55 text-white backdrop-blur-md transition-colors hover:bg-dark/75 md:left-4"
-                          >
-                            <ChevronLeft size={20} />
-                          </button>
-                        )}
-                        {nkApexPage === 0 && (
-                          <button
-                            type="button"
-                            onClick={() => setNkApexPage(1)}
-                            aria-label="Ver outras fotos"
-                            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-dark/55 text-white backdrop-blur-md transition-colors hover:bg-dark/75 md:right-4"
-                          >
-                            <ChevronRight size={20} />
-                          </button>
-                        )}
-                        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5 md:bottom-4">
-                          {nkApexGalleryPages.map((_, pageIndex) => (
-                            <span
-                              key={pageIndex}
-                              className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                                pageIndex === nkApexPage ? "bg-gold" : "bg-white/50"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
+                    {brandImages[index].slice(1, 3).map((src, imageIndex) => (
+                      <div key={src} className="col-span-4 aspect-[4/5] overflow-hidden bg-dark/5">
+                        <img
+                          src={src}
+                          alt={`${name} — detalhe ${imageIndex + 1}`}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.035]"
+                        />
+                      </div>
+                    ))}
                   </motion.div>
                 </div>
 
@@ -271,6 +226,18 @@ export default function ModaPage() {
                       images={maiahBearCubGallery}
                       name={name}
                       bgColor="#e9e4da"
+                      label={p.s01.galleryLabel}
+                    />
+                  </div>
+                )}
+
+                {index === 2 && (
+                  <div className="mx-auto mt-16 max-w-7xl md:mt-20">
+                    <BrandGallery
+                      images={nkApexGallery}
+                      name={name}
+                      bgColor="#0A0A0A"
+                      dark
                       label={p.s01.galleryLabel}
                     />
                   </div>

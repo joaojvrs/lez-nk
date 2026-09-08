@@ -161,6 +161,28 @@ Status possíveis: `pronto para implementar` · `aguardando material do usuário
 - **Status:** ✅ feito. Testado no navegador (Playwright): faixa mostra os 5 ternos + as 3 fotos da Liä em sequência, "Ver todas as fotos" abre o lightbox com contador "1/8", navegação chega até as fotos da Liä (testado até a 6ª foto), sem erros de console.
 - **Ajuste fino:** usuário pediu pra também incluir foto da Liä no grid curado do topo (`brandImages[0]`, as 3 fotos principais que aparecem antes da faixa) — antes eram só os 3 ternos, sem representar o lado feminino da marca ("Moda masculina, feminina e acessórios"). Troquei o 3º slot (`terno5.png`) por `lia4.png` (vestido de couro vermelho) em `src/brands.ts`. Testado no navegador: a foto da Liä aparece no grid do topo (detalhe à direita), sem erros de console.
 
-## 15. Próximos ajustes
+## 15. Toggle Profissional/Pessoal/Social — manter na mesma linha no mobile
+
+- **Origem:** pedido direto do usuário — o alternador de abas da Biografia (item 9/11) tinha `flex-wrap`, então em telas muito estreitas "SOCIAL" podia quebrar pra uma segunda linha. Pediu pra sempre ficar as 3 opções na mesma linha, mesmo no mobile menor.
+- **Onde mexeu:** `src/App.tsx`, botões do toggle da Biografia. Removi o `flex-wrap` e troquei por `flex-1`/`whitespace-nowrap` nos botões (cada um ocupa 1/3 da largura no mobile), com fonte e padding menores nesse breakpoint (`text-[8px] px-2` no mobile, volta pro `text-[10px] px-4` a partir do `sm:`).
+- **Status:** ✅ feito. Testado no navegador (Playwright) em 320px, 360px e 390px de largura: as 3 opções continuam na mesma linha em todos os tamanhos, sem erros de console.
+
+## 16. N.K Apex — voltar pro grid fixo + carrossel sem seta (revertendo item 13)
+
+- **Origem:** usuário pediu pra reverter a navegação por setas do item 13 — o grid do topo deve voltar a ser fixo (as mesmas 3 fotos de sempre) e as outras 3 fotos (6 no total) devem aparecer num carrossel embaixo, igual ao padrão já usado na Maiah Bear Cub e na LÉZ אתפתח, sem seta.
+- **Onde mexeu:**
+  - `src/brands.ts` → removido `nkApexGalleryPages` (as duas páginas com setas), substituído por `nkApexGallery`: array simples com as 6 fotos esportivas.
+  - `src/pages/ModaPage.tsx` → removido o estado `nkApexPage` e toda a lógica condicional de setas/pontinhos do grid do topo (voltou a usar `brandImages[index]` direto, igual às outras marcas); adicionado `<BrandGallery>` também pro bloco `index === 2` (N.K Apex), com `bgColor="#0A0A0A"` (fundo escuro dessa seção) e a nova prop `dark`.
+  - `src/components/BrandGallery.tsx` → reintroduzida a prop `dark` (agora só pra ajustar a cor do divisor e do placeholder das miniaturas em seções de fundo escuro — a prop `bgColor` continua cuidando só do degradê das bordas).
+- **Status:** ✅ feito. Testado no navegador (Playwright): grid do topo do N.K Apex fixo sem setas, carrossel embaixo rola pelas 6 fotos sem seta, "Ver todas as fotos" abre lightbox com contador "1/6", sem erros de console.
+
+## 17. Espaço vazio embaixo do título "Holding Administrativa Empresarial" (página /moda)
+
+- **Origem:** usuário mandou print do mobile mostrando um vão grande entre o título/linha divisória da seção "Marcas do grupo" e o início do bloco "01 LÉZ אתפתח" logo abaixo.
+- **Causa:** em `src/pages/ModaPage.tsx`, a seção `#marcas` (só o cabeçalho "Holding Administrativa Empresarial") tinha padding vertical dos dois lados (`py-20 md:py-28`, topo E base) mais `pb-12 md:pb-16` no divisor interno; embaixo, cada `<article>` de marca também tem seu próprio padding no topo (`py-20 md:py-28 lg:py-36`). Os dois padding de baixo/cima somavam (até ~208px de vão no mobile) porque são duas seções `<section>` separadas, uma logo depois da outra.
+- **Onde mexeu:** troquei o padding vertical da seção `#marcas` de `py-20 md:py-28` (topo+base) pra `pt-20 md:pt-28` (só topo) — a base já é coberta pelo padding de topo do primeiro `<article>` logo abaixo — e reduzi o `pb-12/16` do divisor interno pra `pb-8/10`.
+- **Status:** ✅ feito. Testado no navegador (Playwright) em mobile (390px): vão bem menor entre o título e o início da seção "01 LÉZ אתפתח", sem erros de console.
+
+## 18. Próximos ajustes
 
 _(vou adicionando aqui conforme você for mandando mais coisa)_

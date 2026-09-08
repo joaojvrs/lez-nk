@@ -72,18 +72,14 @@ export const lezEfataGallery: string[] = [
   "/lia/lia4.png",
 ];
 
-// N.K Apex tem 6 fotos esportivas ao todo; a curadoria (brandImages[2]) mostra só 3.
-// Essas duas páginas (a curada + as outras 3) alimentam a seta de navegação da
-// galeria da marca em ModaPage. Pra adicionar foto nova: incluir o caminho aqui.
-export const nkApexGalleryPages: string[][] = [
-  [
-    "/nk-apex/esportiva/esportiva1.png",
-    "/nk-apex/esportiva/esportiva4.png",
-    "/nk-apex/esportiva/esportiva6.png",
-  ],
-  [
-    "/nk-apex/esportiva/esportiva2.png",
-    "/nk-apex/esportiva/esportiva3.png",
-    "/nk-apex/esportiva/esportiva5.png",
-  ],
+// Galeria completa do N.K Apex (as 6 fotos esportivas), pro carrossel abaixo do
+// grid curado (brandImages[2], que continua fixo com só 3). Pra adicionar foto
+// nova: incluir o caminho aqui.
+export const nkApexGallery: string[] = [
+  "/nk-apex/esportiva/esportiva1.png",
+  "/nk-apex/esportiva/esportiva2.png",
+  "/nk-apex/esportiva/esportiva3.png",
+  "/nk-apex/esportiva/esportiva4.png",
+  "/nk-apex/esportiva/esportiva5.png",
+  "/nk-apex/esportiva/esportiva6.png",
 ];

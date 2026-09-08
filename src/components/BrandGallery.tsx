@@ -6,10 +6,12 @@ interface BrandGalleryProps {
   name: string;
   /** Cor de fundo da seção (hex), usada no degradê das bordas da faixa. */
   bgColor: string;
+  /** true quando a seção tem fundo escuro (texto/divisor claros). */
+  dark?: boolean;
   label: string;
 }
 
-export default function BrandGallery({ images, name, bgColor, label }: BrandGalleryProps) {
+export default function BrandGallery({ images, name, bgColor, dark = false, label }: BrandGalleryProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function BrandGallery({ images, name, bgColor, label }: BrandGall
   return (
     <div className="w-full">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <span className="h-px flex-1 bg-dark/10" />
+        <span className={`h-px flex-1 ${dark ? "bg-white/15" : "bg-dark/10"}`} />
         <button
           type="button"
           onClick={() => setOpenIndex(0)}
@@ -46,7 +48,7 @@ export default function BrandGallery({ images, name, bgColor, label }: BrandGall
               key={`${src}-${i}`}
               type="button"
               onClick={() => setOpenIndex(i % images.length)}
-              className="aspect-[4/5] w-24 flex-shrink-0 overflow-hidden bg-dark/5 md:w-32"
+              className={`aspect-[4/5] w-24 flex-shrink-0 overflow-hidden md:w-32 ${dark ? "bg-white/5" : "bg-dark/5"}`}
             >
               <img
                 src={src}
