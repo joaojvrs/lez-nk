@@ -181,7 +181,8 @@ Status possíveis: `pronto para implementar` · `aguardando material do usuário
 - **Origem:** usuário mandou print do mobile mostrando um vão grande entre o título/linha divisória da seção "Marcas do grupo" e o início do bloco "01 LÉZ אתפתח" logo abaixo.
 - **Causa:** em `src/pages/ModaPage.tsx`, a seção `#marcas` (só o cabeçalho "Holding Administrativa Empresarial") tinha padding vertical dos dois lados (`py-20 md:py-28`, topo E base) mais `pb-12 md:pb-16` no divisor interno; embaixo, cada `<article>` de marca também tem seu próprio padding no topo (`py-20 md:py-28 lg:py-36`). Os dois padding de baixo/cima somavam (até ~208px de vão no mobile) porque são duas seções `<section>` separadas, uma logo depois da outra.
 - **Onde mexeu:** troquei o padding vertical da seção `#marcas` de `py-20 md:py-28` (topo+base) pra `pt-20 md:pt-28` (só topo) — a base já é coberta pelo padding de topo do primeiro `<article>` logo abaixo — e reduzi o `pb-12/16` do divisor interno pra `pb-8/10`.
-- **Status:** ✅ feito. Testado no navegador (Playwright) em mobile (390px): vão bem menor entre o título e o início da seção "01 LÉZ אתפתח", sem erros de console.
+- **Ajuste fino:** usuário mandou novo print mostrando que ainda sobrava vão depois da correção acima. Reduzi mais o `pb` do divisor interno, de `pb-8/10` pra `pb-4/6` — só o suficiente pra separar o texto da linha, sem folga extra antes do próximo bloco.
+- **Status:** ✅ feito. Testado no navegador (Playwright) em mobile (390px): transição direta da linha divisória pro "01 LÉZ אתפתח", sem vão sobrando, sem erros de console.
 
 ## 18. Próximos ajustes
 

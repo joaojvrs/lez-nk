@@ -131,7 +131,7 @@ export default function ModaPage() {
 
         <section id="marcas" className="px-6 pt-20 md:px-12 md:pt-28 lg:px-24">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-7 border-b border-dark/10 pb-8 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-10">
+            <div className="grid gap-7 border-b border-dark/10 pb-4 md:grid-cols-[0.8fr_1.2fr] md:items-end md:pb-6">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.38em] text-gold">
                 {p.s01.brandsLabel} · 03
               </p>
