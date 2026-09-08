@@ -111,6 +111,56 @@ Status possíveis: `pronto para implementar` · `aguardando material do usuário
 - **Atenção pra quando for pro ar:** como agora é uma rota de verdade (não uma âncora `#`), o servidor de produção precisa de uma regra de rewrite pra SPA (qualquer URL cair em `index.html`), senão `/moda` dá 404 ao dar refresh direto ou compartilhar o link. Isso depende de onde o site for hospedado (Vercel/Netlify fazem isso automaticamente pra projetos Vite detectados; se for outro serviço, pode precisar configurar manualmente).
 - **Status:** ✅ feito. Testado: link do menu leva pra `/moda`, navegação direta pela URL funciona no dev server, "Voltar ao site" retorna pra `/`, catálogo completo renderiza sem erros.
 
-## 9. Próximos ajustes
+## 9. LÉZ Social — terceira aba na Biografia
+
+- **Origem:** pedido direto do usuário — na seção de Biografia (onde já existia o alternador Profissional/Pessoal), adicionar uma terceira aba "Social" com o texto da atuação social da fundadora Liä Éden.
+- **Onde mexer:** `src/translations.ts` → novo bloco `bioSocial` (pt/en/it), com `title`, `subtitle` e `blocks` (array tipado `{type:'p'|'heading'|'lines', ...}` pra suportar os subtítulos internos do texto — "Prevenir é transformar", "Apoiar os jovens é investir no futuro", "Proteção e reconstrução para mulheres", "Uma responsabilidade que começa no ser humano" — e as duas listas de frases curtas). `bioToggle.social` (label do botão) também adicionado nos 3 idiomas. Renderização em `src/App.tsx` (~linha 330 pro botão, ~linha 435 em diante pro conteúdo) — troquei o ternário prof/pessoal por um de 3 vias, com um `.map` sobre `bioSocial.blocks`.
+- **Traduções:** texto em inglês e italiano traduzidos por mim (o usuário mandou só o texto em PT) — vale revisão se quiser ajustar tom/terminologia.
+- **Imagem:** ver item 10 — a foto por aba foi removida depois, o layout mudou.
+- **Status:** ✅ feito. Testado no navegador (Playwright): as 3 abas alternam, título "LÉZ SOCIAL" e os 4 subtítulos internos aparecem em destaque dourado, blocos de frases curtas em negrito, sem erros de console.
+
+## 10. Reordenar Biografia — colagem de fotos em cima, textos sem foto embaixo
+
+- **Origem:** pedido direto do usuário — a seção "Bio Photo Collage" (3 fotos da Liä + legenda "Sou todas elas, ao mesmo tempo") vivia depois do bloco de biografia (que tinha 1 foto trocando por aba). Pediu pra inverter: colagem com as 3 fotos primeiro, biografias (Profissional/Pessoal/Social) depois, sem nenhuma foto dela.
+- **Onde mexeu:** `src/App.tsx` (~linha 300 em diante). Movi o bloco da colagem pra cima e transferi o `id="bio"` pra ele (é o que a nav `#bio` aponta agora). Na seção de biografia logo abaixo, removi a coluna de imagem (`TechImage` que trocava lia3/lia5/lia1 por aba) e o layout `flex-row` virou uma coluna única de texto, centralizada com `max-w-3xl` pra manter a leitura confortável (antes o texto ficava ao lado de uma imagem de ~320px).
+- **Status:** ✅ feito, mas revisado no item 11 (a coluna centralizada `max-w-3xl` deixava o texto estreito demais/muito longo verticalmente — corrigido).
+
+## 11. Biografia — hierarquia visual (sidebar fixa + coluna larga, sem centralização forçada)
+
+- **Origem:** usuário apontou que a coluna de texto das 3 biografias (item 10) ficava centralizada e estreita (`max-w-3xl mx-auto`), gerando "várias e várias linhas pra baixo" — texto comprido demais na vertical, hierarquia fraca.
+- **Onde mexeu:** `src/App.tsx`, seção de Biografia. Troquei o container único e centralizado por um layout de duas colunas (mesmo padrão já usado na seção "Objetivos Estratégicos"): sidebar à esquerda (`lg:w-1/3`, `lg:sticky lg:top-40`) com o toggle Profissional/Pessoal/Social + título/subtítulo grandes (`text-3xl` a `lg:text-5xl`), e coluna de conteúdo à direita (`lg:w-2/3`), bem mais larga que antes — sem `max-w-3xl`. Aumentei o corpo de texto de `text-sm` pra `text-base md:text-lg`, a citação (quote) de `text-xl` pra `text-2xl md:text-3xl`, e nos subtítulos internos da aba Social (`Prevenir é transformar` etc.) aumentei o tamanho (`text-xl md:text-2xl`) e o espaçamento acima (`mt-4 md:mt-6`) pra marcar mais a quebra de seção; os blocos de frases curtas ("Desenvolver também é proteger...") ganharam uma borda dourada à esquerda pra se destacar como bloco.
+- **Status:** ✅ feito. Testado no navegador (Playwright) em desktop (1400px) e mobile (390px): sidebar acompanha o scroll no desktop, texto ocupa a largura toda da coluna (bem menos linhas), subtítulos e citações com destaque visual claro, mobile empilha em coluna única sem quebra, sem erros de console.
+
+## 12. Carrossel de fotos — Maiah Bear Cub (página /moda)
+
+- **Origem:** pedido direto do usuário — no bloco da Maiah Bear Cub (`/moda`), abaixo das 3 fotos curadas já existentes, adicionar um carrossel passando automaticamente por todas as fotos pequenas da pasta `maiah-bear-cub`, com opção de abrir e navegar por todas.
+- **Onde mexeu:**
+  - `src/brands.ts` → novo array `maiahBearCubGallery` com as 26 fotos das 4 subpastas (`bebes/`, `criancas/`, `roupinhas/`, `estampas/`) — mesma lógica de "array de caminhos fácil de estender" que já guiava `brandImages`.
+  - `src/components/BrandGallery.tsx` (novo) → componente reutilizável com: (1) uma faixa de miniaturas que rola sozinha em loop infinito (CSS `animation`, pausa no hover — `.marquee-track` em `src/index.css`), com gradiente nas bordas pra suavizar o corte; (2) um botão "Ver todas as fotos" e clique em qualquer miniatura abrem um lightbox em tela cheia com setas (anterior/próxima), teclado (`←`/`→`/`Esc`) e contador "N / total".
+  - `src/pages/ModaPage.tsx` → importa `maiahBearCubGallery` e renderiza `<BrandGallery>` logo abaixo do bloco de cada marca, só pra `index === 1` (Maiah Bear Cub).
+  - `src/translations.ts` → nova chave `portfolios.s01.galleryLabel` (pt/en/it) pro texto do botão "Ver todas as fotos".
+- **Nota de teste:** a faixa de miniaturas se move continuamente por design (pausa só no `:hover`) — isso é intencional pro efeito de carrossel automático, não um bug.
+- **Status:** ✅ feito. Testado no navegador (Playwright): faixa rola automaticamente, lightbox abre pelo botão, navega pra frente com a seta, fecha com Esc, sem erros de console.
+
+## 13. Setas de navegação — N.K Apex (página /moda)
+
+- **Origem:** pedido direto do usuário — no bloco do N.K Apex, uma seta pro lado que mostre as outras 3 fotos esportivas (a marca tem 6 fotos no total, a curadoria só mostrava 3).
+- **Onde mexeu:**
+  - `src/brands.ts` → novo array `nkApexGalleryPages`: duas "páginas" de 3 fotos (a curada — esportiva1/4/6 — e as outras 3 — esportiva2/3/5).
+  - `src/pages/ModaPage.tsx` → estado `nkApexPage` (0 ou 1); só pro bloco `index === 2` (N.K Apex), o grid de imagens troca `brandImages[index]` por `nkApexGalleryPages[nkApexPage]`, com duas setas (`ChevronLeft`/`ChevronRight`, sobrepostas nas bordas esquerda/direita) que alternam entre as duas páginas, mais um indicador de pontinhos embaixo mostrando a página ativa.
+- **Ajuste fino:** usuário pediu pra mostrar só uma seta por vez — direita no começo (tem mais fotos pra frente), esquerda depois de trocar (pra voltar). Removi a seta oposta em cada estado (`nkApexPage === 0` só mostra a direita, `=== 1` só mostra a esquerda) em vez das duas sempre visíveis.
+- **Status:** ✅ feito. Testado no navegador (Playwright): só a seta direita aparece na página 0, clique troca pro segundo conjunto de fotos (esportiva2/3/5) e só a seta esquerda aparece, clique de novo volta pro primeiro estado, sem erros de console.
+
+## 14. Galeria LÉZ אתפתח — mesclada com fotos "sociais" da Liä (página /moda)
+
+- **Origem:** pedido direto do usuário — no bloco da LÉZ אתפתח, mesclar as fotos dos 5 ternos com as fotos da Liä (fundadora) que ainda não apareciam em nenhuma seção do site (`lia1`, `lia2`, `lia4` — jaqueta de couro, casaco creme, vestido de couro vermelho; as outras três, `lia3/5/6`, já são usadas na colagem da Biografia).
+- **Onde mexeu:**
+  - `src/brands.ts` → novo array `lezEfataGallery` com os 5 ternos + as 3 fotos da Liä.
+  - `src/components/BrandGallery.tsx` → generalizado: troquei a prop `dark` (boolean) por `bgColor` (hex), usada num degradê inline nas bordas da faixa — antes só cobria a cor de fundo exata da seção da Maiah (`#e9e4da`), agora funciona pra qualquer seção clara passando a cor certa.
+  - `src/pages/ModaPage.tsx` → adiciona `<BrandGallery>` também pro bloco `index === 0` (LÉZ אתפתח), com `bgColor="#f4f1eb"` (cor de fundo dessa seção); atualizei a chamada da Maiah pra `bgColor="#e9e4da"` no lugar do `dark={isDark}` antigo.
+- **Status:** ✅ feito. Testado no navegador (Playwright): faixa mostra os 5 ternos + as 3 fotos da Liä em sequência, "Ver todas as fotos" abre o lightbox com contador "1/8", navegação chega até as fotos da Liä (testado até a 6ª foto), sem erros de console.
+- **Ajuste fino:** usuário pediu pra também incluir foto da Liä no grid curado do topo (`brandImages[0]`, as 3 fotos principais que aparecem antes da faixa) — antes eram só os 3 ternos, sem representar o lado feminino da marca ("Moda masculina, feminina e acessórios"). Troquei o 3º slot (`terno5.png`) por `lia4.png` (vestido de couro vermelho) em `src/brands.ts`. Testado no navegador: a foto da Liä aparece no grid do topo (detalhe à direita), sem erros de console.
+
+## 15. Próximos ajustes
 
 _(vou adicionando aqui conforme você for mandando mais coisa)_

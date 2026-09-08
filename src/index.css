@@ -106,3 +106,16 @@
   border-bottom: 2px solid var(--color-gold);
   border-right: 2px solid var(--color-gold);
 }
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

@@ -125,7 +125,7 @@ export default function App() {
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [bioTab, setBioTab] = useState<'prof' | 'pessoal'>('prof');
+  const [bioTab, setBioTab] = useState<'prof' | 'pessoal' | 'social'>('prof');
   const { lang, setLang, t } = useLang();
 
   const strategyData = [
@@ -297,142 +297,8 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Biography Section */}
-      <div className="py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative" id="bio">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-stretch">
-
-          {/* Image column */}
-          <div className="relative flex-shrink-0 w-full h-72 md:h-auto md:w-[280px] lg:w-[320px]">
-            <TechImage
-              src={bioTab === 'prof' ? '/lia/lia3.png' : '/lia/lia5.png'}
-              alt="Lia Eden Z'anelato"
-              className="w-full h-full shadow-2xl"
-              imgClassName="object-top"
-              imgStyle={{ transform: 'scale(1.05)', transformOrigin: 'top center' }}
-            />
-            <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-gold/20 -z-10" />
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-gold/20 -z-10" />
-          </div>
-
-          {/* Text column */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex-1 flex flex-col justify-between gap-5 md:gap-0"
-          >
-            {/* Title block */}
-            <div>
-              <div className="w-8 h-[1px] bg-gold mb-5" />
-
-              {/* Toggle: Professional / Personal */}
-              <div className="inline-flex border border-dark/15 mb-5">
-                <button
-                  type="button"
-                  onClick={() => setBioTab('prof')}
-                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'prof' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
-                >
-                  {t.bioToggle.professional}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setBioTab('pessoal')}
-                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'pessoal' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
-                >
-                  {t.bioToggle.personal}
-                </button>
-              </div>
-
-              {bioTab === 'pessoal' && (
-                <span className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">{t.bioPersonal.kicker}</span>
-              )}
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold leading-tight tracking-tighter uppercase mb-0">
-                {bioTab === 'prof' ? t.bio.title : t.bioPersonal.title}<br />
-                <span className="text-gold">{bioTab === 'prof' ? t.bio.subtitle : t.bioPersonal.subtitle}</span>
-              </h2>
-            </div>
-
-            {bioTab === 'prof' ? (
-              <>
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p1}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p2}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p3}
-                </p>
-
-                {/* Quote block */}
-                <div className="border-y border-dark/10 py-4 relative">
-                  <Quote className="text-gold/20 absolute -top-3 left-0" size={36} />
-                  <p className="text-xl font-serif italic text-dark leading-snug text-center">
-                    {t.bio.quote}
-                  </p>
-                </div>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p4}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p5}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p6}
-                </p>
-
-                <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
-                  {t.bio.p7}
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p1}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p2}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p3}
-                </p>
-
-                {/* Quote block */}
-                <div className="border-y border-dark/10 py-4 relative">
-                  <Quote className="text-gold/20 absolute -top-3 left-0" size={36} />
-                  <p className="text-xl font-serif italic text-dark leading-snug text-center">
-                    {t.bioPersonal.quote}
-                  </p>
-                </div>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p4}
-                </p>
-
-                <p className="text-dark/70 font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p5}
-                </p>
-
-                <p className="font-semibold text-dark font-sans text-sm leading-[1.8] text-justify">
-                  {t.bioPersonal.p7}
-                </p>
-              </>
-            )}
-          </motion.div>
-
-        </div>
-      </div>
-
       {/* Bio Photo Collage */}
-      <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto pb-16 md:pb-32">
+      <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto pt-16 md:pt-32" id="bio">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -468,6 +334,169 @@ export default function App() {
             </p>
           </div>
         </motion.div>
+      </div>
+
+      {/* Biography Section */}
+      <div className="py-16 md:py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-20">
+
+          {/* Sidebar: toggle + title, sticky on desktop */}
+          <div className="lg:w-1/3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:sticky lg:top-40"
+            >
+              <div className="w-8 h-[1px] bg-gold mb-5" />
+
+              {/* Toggle: Professional / Personal / Social */}
+              <div className="inline-flex flex-wrap border border-dark/15 mb-6">
+                <button
+                  type="button"
+                  onClick={() => setBioTab('prof')}
+                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'prof' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                >
+                  {t.bioToggle.professional}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBioTab('pessoal')}
+                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'pessoal' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                >
+                  {t.bioToggle.personal}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBioTab('social')}
+                  className={`px-4 py-2 text-[10px] font-mono uppercase tracking-widest font-bold transition-colors ${bioTab === 'social' ? 'bg-gold text-white' : 'text-dark/50 hover:text-dark'}`}
+                >
+                  {t.bioToggle.social}
+                </button>
+              </div>
+
+              {bioTab === 'pessoal' && (
+                <span className="text-gold font-mono text-[10px] uppercase tracking-widest font-bold block mb-2">{t.bioPersonal.kicker}</span>
+              )}
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold leading-[1.05] tracking-tighter uppercase">
+                {bioTab === 'prof' ? t.bio.title : bioTab === 'pessoal' ? t.bioPersonal.title : t.bioSocial.title}<br />
+                <span className="text-gold">{bioTab === 'prof' ? t.bio.subtitle : bioTab === 'pessoal' ? t.bioPersonal.subtitle : t.bioSocial.subtitle}</span>
+              </h2>
+            </motion.div>
+          </div>
+
+          {/* Content column */}
+          <motion.div
+            key={bioTab}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:w-2/3 flex flex-col gap-6 md:gap-7"
+          >
+            {bioTab === 'prof' ? (
+              <>
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p1}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p2}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p3}
+                </p>
+
+                {/* Quote block */}
+                <div className="border-y border-dark/10 py-6 my-2 relative">
+                  <Quote className="text-gold/20 absolute -top-3 left-0" size={40} />
+                  <p className="text-2xl md:text-3xl font-serif italic text-dark leading-snug text-center">
+                    {t.bio.quote}
+                  </p>
+                </div>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p4}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p5}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p6}
+                </p>
+
+                <p className="font-semibold text-dark font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bio.p7}
+                </p>
+              </>
+            ) : bioTab === 'pessoal' ? (
+              <>
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p1}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p2}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p3}
+                </p>
+
+                {/* Quote block */}
+                <div className="border-y border-dark/10 py-6 my-2 relative">
+                  <Quote className="text-gold/20 absolute -top-3 left-0" size={40} />
+                  <p className="text-2xl md:text-3xl font-serif italic text-dark leading-snug text-center">
+                    {t.bioPersonal.quote}
+                  </p>
+                </div>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p4}
+                </p>
+
+                <p className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p5}
+                </p>
+
+                <p className="font-semibold text-dark font-sans text-base md:text-lg leading-[1.8] text-justify">
+                  {t.bioPersonal.p7}
+                </p>
+              </>
+            ) : (
+              <>
+                {t.bioSocial.blocks.map((block, i) => {
+                  if (block.type === 'heading') {
+                    return (
+                      <h3 key={i} className="text-gold font-serif font-bold text-xl md:text-2xl tracking-tight mt-4 md:mt-6 first:mt-0">
+                        {block.text}
+                      </h3>
+                    );
+                  }
+                  if (block.type === 'lines') {
+                    return (
+                      <p key={i} className="font-semibold text-dark font-sans text-base md:text-lg leading-[1.8] border-l-2 border-gold/40 pl-5">
+                        {block.items.map((line, j) => (
+                          <span key={j} className="block">{line}</span>
+                        ))}
+                      </p>
+                    );
+                  }
+                  return (
+                    <p key={i} className="text-dark/70 font-sans text-base md:text-lg leading-[1.8] text-justify">
+                      {block.text}
+                    </p>
+                  );
+                })}
+              </>
+            )}
+          </motion.div>
+
+        </div>
       </div>
 
       {/* Presentation Section */}
