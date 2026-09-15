@@ -1366,6 +1366,7 @@ export default function App() {
               <p className="hover:text-white transition-colors cursor-pointer">ceo@leznkcapital.com.br</p>
               <p className="hover:text-white transition-colors cursor-pointer">marketing@leznkcapital.com.br</p>
               <p className="hover:text-white transition-colors cursor-pointer">juridico@leznkcapital.com.br</p>
+              <p className="hover:text-white transition-colors cursor-pointer">(47) 9660-5929</p>
             </div>
             <div className="space-y-4">
               <p className="text-gold font-bold mb-6">{t.footer.legal}</p>
